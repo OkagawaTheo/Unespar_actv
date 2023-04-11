@@ -26,7 +26,7 @@ public class Calculator{
             
 
             switch(getOperation) {
-                case 1: //adição
+                case 1: //adição    
                     op.sum(num1,num2);
                     break;
                 
@@ -72,8 +72,6 @@ public class Calculator{
         }
 
     }
-
-
 }
 
     
