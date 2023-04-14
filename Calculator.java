@@ -5,11 +5,8 @@ public class Calculator{
 
         Scanner s = new Scanner(System.in);
         Operations op = new Operations();
-
-
         int getOperation = 0;
         double num1, num2;
-
 
         System.out.println("\nCalculadora - Bem-vindo!");
 
