@@ -11,5 +11,5 @@ int main() {
     scanf("%f", &litros);
 
     
-    printf("\nConsumo médio de %d km rodados e %.1f litros consumidos é %.2f km/l\n",dist,litros, (dist / litros));
+    printf("\nConsumo médio de %d km rodados e %.1f litros consumidos é de %.2f km/l\n",dist,litros, (dist / litros));
 }
