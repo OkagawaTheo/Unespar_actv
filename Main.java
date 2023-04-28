@@ -11,10 +11,10 @@ public class Main {
         int D = s.nextInt();
         
         
-        if ((B > C) && (D > A) && ((C + D) > (A + B)) && (C > 0) && (D > 0) && ((A%2) == 0)){
-            System.out.println("Valores aceitos");
+        if ((B >C) && (D>A) && ((C+D) > (A + B)) && (C > 0) && (D > 0) && ((A%2) == 0)){
+            System.out.printf("Valores aceitos");
         } else {
-            System.out.println("Valores nao aceitos");
+            System.out.printf("Valores nao aceitos");
             
         }
     
