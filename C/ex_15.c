@@ -1,93 +1,131 @@
 #include <stdio.h>
 
-int main(){
+int main()
+{
 
-    int mam, ave,rep;
-    int quad,bip,herb,voador,aqua,naovoador,nad,rapina,casco,carn,sempatas,oni,frut,tropical,polar,nadador;
+    int mam, ave, rep;
+    int quad, bip, herb, voador, aqua, naovoador, nad, rapina, casco, carn, sempatas, oni, frut, tropical, polar;
 
     printf("Digite 1 para sim e 0 para não.\n");
 
     printf("É mamifero? ");
-    scanf("%d",&mam);
+    scanf("%d", &mam);
+    if (mam == 1)
+    {
+        printf("É quadrupede? ");
+        scanf("%d", &quad);
 
-    printf("É quadrupede? ");
-    scanf("%d",&quad);
+        if (quad == 1)
+        {
+            printf("É carnivoro? ");
+            scanf("%d", &carn);
+            if (carn == 1)
+            {
+                printf("Leao");
+                exit(0);
+            }
+            else
+            {
+                printf("Herbívoro, Cavalo.");
+                exit(0);
+            }
+        }
 
-    printf("É carnivoro? ");
-    scanf("%d",&carn);
+        printf("É bipede? ");
+        scanf("%d", &bip);
+        if (bip == 1)
+        {
+            printf("É onivoro? ");
+            scanf("%d", &oni);
+            if (oni == 1)
+            {
+                printf("Homem");
+                exit(0);
+            }
+            else
+            {
+                printf("frutifero, macaco.");
+                exit(0);
+            }
+        }
 
-    printf("É herbivoro? ");
-    scanf("%d",&herb);
+        printf("é voador? ");
+        scanf("%d", &voador);
+        if (voador == 1)
+        {
+            printf("morcego");
+            exit(0);
+        }
+        else
+        {
+            printf("aquatico, baleia");
+            exit(0);
+        }
+    }
 
     printf("É ave? ");
-    scanf("%d",&ave);
+    scanf("%d", &ave);
 
-    printf("É reptil? ");
-    scanf("%d",&rep);
-
-    if (mam == 1){
-        if (quad == 1){ //mam e quad
-
-        if (herb == 1 && carn == 0){
-                printf("cavalo");
-            }
-
-        if (carn == 1){
-            printf("leao");
-        }
-            
-        }
-
-        if (bip == 1){
-            if (oni == 1){
-                printf("Homem");
-            }
-            if (frut == 1){
-                printf("Macaco");
-            }
-        }
-
-        if (voador == 1){
-            printf("Morcego");
-        }
-        if (aqua == 1){
-            printf("Baleia");
-        }
-    }
-
-    if (ave == 1){
-        if (naovoador == 1){
-            if (tropical == 1){
+    if (ave == 1)
+    {
+        printf("nao-voadora? ");
+        scanf("%d", &naovoador);
+        if (naovoador == 1)
+        {
+            printf("Tropical? ");
+            scanf("%d", &tropical);
+            if (tropical == 1)
+            {
                 printf("avestruz");
+                exit(0);
             }
-        if (polar == 1){
-            printf("pinguim");
-        }
-        
-        }
-
-        if (nadador == 1){
-            printf("pato");
+            else
+            {
+                printf("polar, pinguim");
+                exit(0);
+            }
         }
 
-        if (rapina == 1){
-            printf("aguia");
+        else
+        {
+            printf("é nadadora? ");
+            scanf("%d", &nad);
+            if (nad == 1)
+            {
+                printf("pato");
+                exit(0);
+            }
+            else
+            {
+                printf("rapina, aguia");
+                exit(0);
+            }
+        }
+
+
+        printf("É reptil? ");
+        scanf("%d", &rep);
+        if (rep == 1)
+        {
+            printf("Tem casco? ");
+            scanf("%d", &casco);
+            if (casco == 1)
+            {
+                printf("tartaruga");
+                exit(0);
+            }
+            printf("Carnivoro? ");
+            scanf("%d", carn);
+            if (carn == 1)
+            {
+                printf("crocodilo");
+                exit(0);
+            }
+            else
+            {
+                printf("sem patas, cobra");
+                exit(0);
+            }
         }
     }
-
-    if (rep == 1){
-        if (casco == 1){
-            printf("tartaruga");
-        }
-    
-        if (carn == 1){
-            printf("crocodilo");
-        }
-
-        if (sempatas == 1){
-            printf("cobra");
-        }
-    }
-
-
 }
