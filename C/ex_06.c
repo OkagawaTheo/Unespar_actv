@@ -6,7 +6,7 @@ int main(){
     printf("Digite um número: ");
     scanf("%f",&num);
 
-    if (num > 50) {
+    if (num >= 50) {
         printf("%.2f / 2 = %.2f\n",num,num / 2);
     } else{
         printf("%.2f x 2 = %.2f\n",num,num * 2);
