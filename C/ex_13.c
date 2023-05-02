@@ -13,7 +13,7 @@ int main(){
         salario = salario + (salario*12)/100;
     }
     else if (salario > 800 && salario <=1200){
-        salario = salario + (10*10)/100;
+        salario = salario + (salario*10)/100;
     }
     else if (salario > 1200 && salario <=2000){
         salario = salario + (salario*7)/100;
