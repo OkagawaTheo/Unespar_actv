@@ -4,7 +4,8 @@ int main()
 {
 
     int mam, ave, rep;
-    int quad, bip, herb, voador, aqua, naovoador, nad, rapina, casco, carn, sempatas, oni, frut, tropical, polar;
+    int quad, bip, herb, voador, aqua, naovoador, nad;
+    int rapina, casco, carn, sempatas, oni, frut, tropical, polar;
 
     printf("Digite 1 para sim e 0 para não.\n");
 
