@@ -8,6 +8,10 @@ public class Main{
         int b = s.nextInt();
         int c = s.nextInt();
 
+        int maior = (a + b + Math.abs(a-b)) / 2;
+        int maiorABC = (maior + c + Math.abs(maior - c)) / 2; 
+
         
+        System.out.printf("%d eh o maior\n",maiorABC);
     }
 }
