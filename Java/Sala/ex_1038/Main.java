@@ -1,34 +1,34 @@
 import java.util.Scanner;
 
+
 public class Main{
-    public static void main(String args[]){
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("Digite a quantidade: ");
-        int qnt = s.nextInt();
-
-        System.out.println("Digite o código: ");
+    public static void main(String args[]) {
+      Scanner s = new Scanner(System.in); 
+        
         int cod = s.nextInt();
+        int qtd = s.nextInt();
+        double total = 0.0;
 
-    switch (cod) {
-        case 1:
-            System.out.printf("Total: R$%.2f",(qnt * 4.00));
-            break;
-        case 2:
-            System.out.printf("Total: R$%.2f",(qnt * 4.5));
-            break;
-        case 3:
-            System.out.printf("Total: R$%.2f",(qnt * 5.00));
-            break;
-        case 4:
-            System.out.printf("Total: R$%.2f",(qnt * 2.00));
-            break;
-        case 5:
-            System.out.printf("Total: R$%.2f",(qnt * 1.50));
-            break;
-    }
+        if(cod == 1){
+           total = qtd * 4.0;
+        }
+        else if(cod == 2){
+           total = qtd * 4.5;
+        }
+        else if(cod == 3){
+           total = qtd * 5.0;
+        }
+        else if(cod == 4){
+           total = qtd * 2;
+        }
+        else if(cod == 5){
+              total = qtd * 1.5;
+        } 
+        else {
+            System.out.println("Código não encontrado.");}
 
-
-
-    }
+            System.out.printf("Total: R$ %.2f\n",total);
+  }
 }
+    
+    
