@@ -62,7 +62,11 @@ public class Calculator{
 
         private void mult(double num1, double num2){ //mult
             System.out.printf("\n%.2f x %.2f = %.2f\n",num1,num2,num1*num2);
-        }
+        }public class Main{
+    public static void main(String args[]){
+        System.out.println("Hello World!");
+    }
+}
 
         private void div(double num1, double num2){
             System.out.printf("\n%.2f / %.2f = %.2f\n",num1,num2,num1/num2);
