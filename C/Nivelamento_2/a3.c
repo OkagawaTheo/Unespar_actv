@@ -3,15 +3,13 @@
 
 int main(){
 
-    float raio,p;
-    
-    p = 3.14;
+    double raio;
+    double const pi = 3.14;
 
-    printf("Insira o valor do raio do circulo: ");
-    scanf("%f",&raio);
+    printf("\nInsira o valor do raio do circulo: ");
+    scanf("%lf",&raio);
 
-    printf("O valor da área do círculo é %f",p*pow(raio,2));
+    printf("O valor da área do círculo é %lf\n",pi * pow(raio,2));
 }
 
-// caso nao compilar, colocar -lm ao executar
-
+// usar parâmetro -lm ao executar
