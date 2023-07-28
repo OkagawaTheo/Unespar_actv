@@ -24,7 +24,5 @@ public class Palindromo{
         }
         System.out.println(maior);
 
-
-
     }
 }
