@@ -10,6 +10,6 @@ int main(){
     printf("Digite os respectivos pesos: ");
     scanf("%f %f %f",&p1,&p2,&p3);
 
-    float mp = ((n1*p2 + n2*p2 + n3*p3) / (p1+p2+p3));
+    float mp = (n1*p1 + n2*p2 + n3*p3) / (p1+p2+p3);
     printf("A média do aluno é: %.2f\n",mp);
 }
