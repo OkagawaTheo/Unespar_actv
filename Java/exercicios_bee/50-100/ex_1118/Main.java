@@ -4,12 +4,11 @@ public class Main{
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int nv = 0;
-        double media = 0.0;
+        double media = 0;
         boolean flag = true;
-        double n1;
         
         while (flag){
-            n1 = s.nextDouble();
+            double n1 = s.nextDouble();
 
             if (n1 < 0 || n1 > 10){
                 System.out.println("nota invalida");
@@ -52,7 +51,7 @@ public class Main{
             }
         }
 
-        s.close();
+        
 
     }
 }
