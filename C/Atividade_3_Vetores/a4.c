@@ -21,10 +21,7 @@ int main(){
             imp[i] = v[i];
             impar++;
         }
-        
     }
-
-
     
     printf("Quantidade de valores pares: %d\n",par);
     printf("Todos os números pares: ");
@@ -41,6 +38,5 @@ int main(){
         if (imp[i] != 0){
             printf("%d ",imp[i]);
         }
-
     }
 }
