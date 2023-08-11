@@ -18,6 +18,7 @@ public class Medias {
         for(int i=0; i<notas.length; i++){
             soma += notas[i];
         }
+        
         System.out.printf("A média é %.2f\n",(soma/notas.length));
     }
 }
