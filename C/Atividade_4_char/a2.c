@@ -3,9 +3,10 @@
 
 int main(){
     char musica[50];
-    char letra;
     int oc[20];
-    int q = 0, num = 0;
+    char letra;
+    int q = 0;
+    int num = 0;
 
     printf("Informe o nome de uma musica: ");
     fgets(musica,50,stdin);
@@ -28,4 +29,4 @@ int main(){
     }else{
         printf("Caractere nao encontrado\n");
     }
-}
+}    char letra;xf86-input-synaptics
