@@ -15,6 +15,7 @@ int main(){
         for (int j=0;j<3;j++){
             printf("%d ",mat[i][j]);
         }
+        printf("\n");
     }
     printf("\nO maior número digitado foi: %d",maior);
 }
