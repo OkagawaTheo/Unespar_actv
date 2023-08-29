@@ -22,11 +22,9 @@ int main(){
         }
     }
 
-    if(q > 0){
-        for(int i = 0; i < q; i++){
-            printf("Ocorrencia do caractere na posicao %d\n", oc[i]);
-        }
-    }else{
-        printf("Caractere nao encontrado\n");
+    if(q==0) printf("Caractere nao encontrado\n");
+    
+    for(int i=0;i<q;i++){
+        printf("Ocorrencia do caractere na posicao %d\n", oc[i]);
     }
-}    char letra;xf86-input-synaptics
+}
