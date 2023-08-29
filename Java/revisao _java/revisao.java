@@ -17,7 +17,7 @@
 
 // //         // while loop
 // //         // int num = 0;
-// //         // while (num < 10){
+        // while (num < 10){
 // //             // num++;
 // //             // System.out.println(num);
   
