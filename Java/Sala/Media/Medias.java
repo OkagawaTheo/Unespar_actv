@@ -20,5 +20,6 @@ public class Medias {
         }
         
         System.out.printf("A média é %.2f\n",(soma/notas.length));
+        s.close();
     }
 }
