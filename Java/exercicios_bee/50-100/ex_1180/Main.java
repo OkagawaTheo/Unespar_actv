@@ -19,6 +19,5 @@ public class Main{
         }
         System.out.println("Menor valor: " + menor);
         System.out.println("Posicao: " + posMenor);
-    }
-	
+    }	
 }
