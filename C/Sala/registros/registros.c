@@ -18,10 +18,8 @@ int main()
 
     for (int i = 0; i < 2; i++)
     {
-
         printf("Digite o código do %dº professor: ", i + 1);
         scanf("%d", &p[i].codigo);
-        fflush(stdin);
         fflush(stdin);
         printf("Digite o sexo [m,f]:");
         scanf("%s", &p[i].sexo);
@@ -29,7 +27,6 @@ int main()
         printf("Digite o total de horas-aula ministradas:");
         scanf("%d", &p[i].ValorhoraAula);
         double sal_bruto = horaAula * p[i].ValorhoraAula;
-        fflush(stdin);
 
         if (p[i].ValorhoraAula < 70)
         {
@@ -40,13 +37,11 @@ int main()
             novo_sal = sal_bruto - ((sal_bruto * 5) / 100);
         }
 
-        if (p[i].sexo == 'm')
-        {
+        if (p[i].sexo == 'm'){
             tot_salario_m += novo_sal;
             m++;
         }
-        else
-        {
+        else{
             tot_salario_f += novo_sal;
             f++;
         }
