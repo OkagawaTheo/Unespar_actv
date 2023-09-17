@@ -2,8 +2,9 @@ package classes;
 
 public class Aluno {
     public String nome;
-    int idade;
-    Curso curso;
+    public int idade;
+    public Curso curso;
 
-    String getReg(){return this.nome + ";" + this.idade + ";" + this.curso.nome;}
+    public String getReg(){return this.nome + ";" + this.idade + ";" + this.curso.nome;}
+
 }
