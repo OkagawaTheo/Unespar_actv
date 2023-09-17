@@ -1,1 +1,3 @@
-Theo;17;Ciência da Computação
+Theo Okagawa Rodrigues;17;Administração
+Maria Eduarda Brito Santos;18;Biomedicina
+asdad;23;Administração

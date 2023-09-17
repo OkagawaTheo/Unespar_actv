@@ -11,11 +11,13 @@ import classes.Menu;
 public class Main {
     public static void main(String[] args) throws IOException {
         int opt;
-        Curso cursos[] = new Curso[2];
+        Curso cursos[] = new Curso[3];
         cursos[0] = new Curso();
         cursos[0].nome = "Ciência da Computação";
         cursos[1] = new Curso();
         cursos[1].nome = "Administração";
+        cursos[2] = new Curso();
+        cursos[2].nome = "Biomedicina";
 
         Menu menu = new Menu();
         Scanner s = new Scanner(System.in);
@@ -26,7 +28,7 @@ public class Main {
             file.createNewFile();
         }
 
-       FileWriter fw = new FileWriter(file);
+       FileWriter fw = new FileWriter(file,true);
        BufferedWriter bw = new BufferedWriter(fw);  
 
         lb_loop: while (true) {
@@ -41,7 +43,7 @@ public class Main {
                     al.nome = s.nextLine();
                     System.out.println("\nDigite o curso dentre as opções:");
                     for (int i=0;i<cursos.length;i++){ 
-                        System.out.printf("[%d] - %s\n",i,cursos[i].nome);
+                        System.out.printf("[%d] - %s\n",i+1,cursos[i].nome);
                     }
                     
                     int id_curso = -1;
@@ -64,9 +66,10 @@ public class Main {
                     bw.append(al.getReg());
                     System.out.println("\nAluno criado com sucesso.");
                 case 9:
-                    s.close();
                     break lb_loop;
             }
+            s.close();
+            bw.close();
 
         }
     }
