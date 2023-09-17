@@ -41,7 +41,11 @@ public class Main {
 
                     System.out.println("Digite o nome:");
                     al.nome = s.nextLine();
-                    System.out.println("\nDigite o curso dentre as opções:");
+
+                    System.out.println("Digite a idade: ");
+                    al.idade = Integer.parseInt(s.nextLine());
+
+                     System.out.println("Digite o curso dentre as opções:");
                     for (int i=0;i<cursos.length;i++){ 
                         System.out.printf("[%d] - %s\n",i+1,cursos[i].nome);
                     }
@@ -55,16 +59,14 @@ public class Main {
                         id_curso = Integer.parseInt(s.nextLine());
                         flag_curso = true;
                     } while(id_curso <= 0 || id_curso > cursos.length);
-                    al.curso = cursos[id_curso];
-
-                    System.out.println("Digite a idade: ");
-                    al.idade = Integer.parseInt(s.nextLine());
+                    al.curso = cursos[id_curso-1];
 
                     bw.append(al.getReg());
                     bw.newLine();
                     bw.flush();
                     bw.append(al.getReg());
                     System.out.println("\nAluno criado com sucesso.");
+                    break;
                 case 9:
                     break lb_loop;
             }
