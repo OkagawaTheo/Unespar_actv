@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -29,8 +28,6 @@ public class Main {
 
        FileWriter fw = new FileWriter(file);
        BufferedWriter bw = new BufferedWriter(fw);  
-
-        
 
         lb_loop: while (true) {
             System.out.println("O que deseja fazer? ");
