@@ -64,16 +64,17 @@ public class Main {
                     bw.append(al.getReg());
                     bw.newLine();
                     bw.flush();
-                    bw.append(al.getReg());
                     System.out.println("\nAluno criado com sucesso.");
                     break;
                 case 9:
                     break lb_loop;
+                default:
+                System.out.println("Opção Inválida.");
+                break;
             }
-            s.close();
-            bw.close();
-
         }
+        bw.close();
+        fw.close();
     }
 
     

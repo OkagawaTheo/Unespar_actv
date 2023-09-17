@@ -1,2 +1,2 @@
-Theo Okagawa Rodrigues;17;Ciência da Computação
-Maria Eduarda Brito Santos;18;Biomedicina
+Theo;17;Ciência da Computação
+Eduarda;18;Biomedicina
