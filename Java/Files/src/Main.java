@@ -75,6 +75,7 @@ public class Main {
         }
         bw.close();
         fw.close();
+        s.close();
     }
 
     
