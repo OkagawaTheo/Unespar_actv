@@ -16,7 +16,7 @@ void squareRoot(double num){
 
 void fat(double num){
     int fat;
-    for(fat = 1; num > 1; num = num - 1){
+    for(fat = 1; num > 1; num-=1){
         fat *= num;
     }
     printf("%d",fat);
