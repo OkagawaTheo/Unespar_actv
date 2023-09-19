@@ -24,16 +24,15 @@ int main(){
         scanf("%lf",&d[i].salario);
         total_salario += d[i].salario;
         maior_salario = d[i].salario;
-        if (maior_salario > d[i].salario){
+        if (maior_salario < d[i].salario){
             maior_salario = d[i].salario;
         }
 
         printf("\nIdade: ");
         scanf("%d",&d[i].idade);
         menor_idade = d[i].idade;
-
-        if (d[i].idade < menor_idade){
-            menor_idade = d[i].idade; 
+        if (menor_idade > d[i].idade){
+            menor_idade = d[i].idade;
         }
 
         if (d[i].idade == 0) break;
@@ -49,7 +48,7 @@ int main(){
         i++;
     }
 
-    printf("Média de mulheres com salário menor de 300 reais: %lf \n",cont_salario_inferior/i);
+    printf("\nMédia de mulheres com salário menor de 300 reais: %lf \n",cont_salario_inferior/i);
     printf("Média de salário da população: %.2lf\n",total_salario/i);
     printf("Média de número de filhos: %.2lf\n",total_numFilhos/i);
     printf("Maior salário: %.2lf\n",maior_salario);
