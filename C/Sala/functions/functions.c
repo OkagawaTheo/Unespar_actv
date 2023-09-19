@@ -14,7 +14,7 @@ void squareRoot(double num){
     printf("%lf",sqrt(num));
 }
 
-void fat(int num){
+void fat(double num){
     int fat;
     for(fat = 1; num > 1; num = num - 1){
         fat *= num;
@@ -28,7 +28,7 @@ int main(){
     scanf("%lf %lf",&a,&b);
     maiorNumero(a,b);
 
-    printf("Digite um número para saber sua raiz e fatorial: ");
+    printf("\nDigite um número para saber sua raiz e fatorial: ");
     scanf("%lf",&num);
 
     squareRoot(num);
