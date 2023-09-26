@@ -9,7 +9,7 @@
         int num_filhos;
     }Dados;
 
-int main(){
+int main(){ 
     int qtd,i=0;
     double cont_salario_inferior=0.0;
     double menor_idade = 0.0,total_salario = 0.0,total_numFilhos=0.0, maior_salario=0.0;
