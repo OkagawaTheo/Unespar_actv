@@ -3,11 +3,11 @@
 void createMat(int mat[3][4],int vet[12]){
     int i,j,a=0;
     //preenche matriz e copia para um vetor
+    printf("Digite os 12 valores: ");
     for (i=0;i<3;i++){ 
         for (j=0;j<4;j++){
             scanf("%d",&mat[i][j]);
             vet[a++] = mat[i][j];
-            
         }
     }
 
