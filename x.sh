@@ -16,6 +16,7 @@ WINEARCH=win32 WINEPREFIX=~/.wine-circuitmaker winetricks -q gdiplus corefonts r
 curl https://docentes.ifrn.edu.br/leonardoteixeira/links/instalador-do-circuitmaker-student/at_download/file -0 ~/Downloads/circuitmaker_student.exe
 
 WINEPREFIX=~/.wine-circuitmaker wine ~/Downloads/circuitmaker_student.exe
+echo "Instalado com sucesso! Desce o follow ai pra ajudar"
 circuitmaker
 
 # caso dê errado, entre nesse link <https://docente.ifrn.edu.br/leonardoteixeira/links/instalador-do-circuitmaker-student/view>, baixe manualmente e execute
