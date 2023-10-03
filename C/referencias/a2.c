@@ -15,5 +15,5 @@ int main(){
 
     acres(preço_antigo,preço_novo,&acrescimo);
 
-    printf("Percentual de acrescimo: %%%.2f",acrescimo);
+    printf("Percentual de acrescimo: %% %.2f",acrescimo);
 }

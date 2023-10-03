@@ -23,5 +23,5 @@ int main(){
     scanf("%s",&l);
 
     calcMedia(n1,n2,n3,&re_media,l);
-    printf(".1%f",re_media);
+    printf("%.1f",re_media);
 }
