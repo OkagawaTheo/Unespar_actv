@@ -29,7 +29,7 @@ int main(){
     scanf("%f",&aluno.nota2);
 
     snprintf(nomeArq, sizeof(nomeArq), "%s.txt", aluno.nome);
-    FILE *arq = fopen(nomeArq,"w");
+    FILEhttps://github.com/OkagawaTheo/Unespar_actv/tree/main/C/Atividade_9_Files *arq = fopen(nomeArq,"w");
 
     fprintf(arq, "Número: %d\n",aluno.numero);
     fprintf(arq, "Nome: %d\n",aluno.nome);

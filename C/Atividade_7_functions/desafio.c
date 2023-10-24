@@ -13,10 +13,12 @@ typedef struct Produto{
 
 void cadastrarProduto(produto *prod){
     int num;
-    printf("Cadastrar um produto\nCadastrar[1]\nSair[0]\n ");
-
-    do {
-        scanf("%d",&num);
+    
+    while (true){
+        if (num == 0){
+            break;
+        }
+        
         printf("Digite o código do produto: ");
 
         scanf("%d",&prod->codigo);
@@ -39,12 +41,22 @@ void cadastrarProduto(produto *prod){
 
         printf("\nCadastrar um produto\nCadastrar[1]\nSair[0]\n ");
 
-    } while(num != 0);   
-}
+    }
+} 
 
--
+void listProducts(produto prod){
+    
+}
 
 int main(){
     produto prod;
-    cadastrarProduto(&prod);
+    int num;
+
+    printf("Cadastrar um produto\nCadastrar[1]\nSair[0]\n ");
+    scanf("%d",&num);
+
+    switch (num){
+        case 1: cadastrarProduto(&prod); 
+        default: printf("erro");
+    }
 }
