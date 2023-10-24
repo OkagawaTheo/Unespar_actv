@@ -14,7 +14,7 @@ int main() {
 
     printf("Número do aluno: ");
     scanf("%d", &aluno.numero);
-    getchar(); // Consumir a quebra de linha deixada no buffer
+    getchar(); 
 
     printf("Digite o nome do aluno: ");
     fgets(aluno.nome, sizeof(aluno.nome), stdin);
