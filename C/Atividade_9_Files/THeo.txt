@@ -1,5 +1,0 @@
-Número: 23
-Nome: THeo
-Curso: 
-Nota 1: 23.00
-Nota 2: 23.00

@@ -1,7 +1,0 @@
-Número: 1
-Nome: Theo
-
-Curso: CCOMP
-
-Nota 1: 10.00
-Nota 2: 7.00
