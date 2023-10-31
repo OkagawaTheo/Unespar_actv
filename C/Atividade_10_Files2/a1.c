@@ -2,13 +2,11 @@
 
 typedef struct Texto{
     char nome[100];
-
-
+    char texto[100];
 }Texto;
 
 
-int main()
-{
+int main(){
     char nomeArq[100];
     FILE* arq;
     Texto txt;
@@ -23,5 +21,6 @@ int main()
     }
     
     printf("O que deseja inserir dentro do arquivo? ");
-    
+    fgets(txt.texto,sizeof(txt.texto),stdin);
+    fprintf(arq,txt.texto);
 }
