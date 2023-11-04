@@ -34,4 +34,6 @@ int main(){
         fprintf(saida,"Menor de idade.");
         fprintf(saida,p.nome);    
     }
+    fclose(entrada);
+    fclose(saida);
 }
