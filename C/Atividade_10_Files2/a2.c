@@ -1,23 +1,28 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
 int main(){
-    FILE* arq;
+    FILE* entrada;
+    FILE* saida;
     char texto[100];
-    char vogais[] = {'a','e','i','o','u','\0'};
+    char caracter;
 
-    if ((arq = fopen("arq1.txt","w")) == NULL){
-        printf("error");
-    }
-    
-    printf("Digite o que deseja inserir no arquivo: ");
+    entrada = fopen("entrada.txt","w");
+    printf("Digite o que quiser no arquivo: ");
     fgets(texto,sizeof(texto),stdin);
-    fprintf(arq,texto);
-    fclose(arq);
+    fprintf(entrada,texto);   
+    
+    saida = fopen("saida.txt","w");
+    fclose(entrada);
+    entrada = fopen("entrada.txt","r");
 
-    FILE* arq_saida = fopen("saida.txt","w");
-    fprintf(arq_saida,texto);
-    rewind(arq_saida);
-    fclose(arq_saida);
-
-    arq = fopen("saida.txt","r");
+    while ((caracter = fgetc(entrada)) != EOF){
+        if (isalpha(caracter) && strchr("AEIOUaeiou",caracter)){
+            fputc('*',saida);
+        }
+        else {
+            fputc(caracter,saida);
+        }
+    }
 }
