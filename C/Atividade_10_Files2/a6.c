@@ -33,5 +33,9 @@ int main(){
     fclose(arq);
     
     arq = fopen("entrada.txt","r");
-    
+
+    //while (fscanf(arq,"%s,%f",f.num,&f.total_vendas) != EOF){
+    //    printf("\n%f",vendas[i]);
+    //}
+    //printf("Valor total das vendas de todas as filiais: %.2f",valor_total);
 }
