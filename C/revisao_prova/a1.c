@@ -29,6 +29,16 @@ void Preencher(Emp *empresa) {
     CalcularVariacaoAcao(empresa);
 }
 
+void AlterarValores(Emp *empresa,float valor){
+    printf("Digite um novo valor para alterar todas as açoes: ");
+    scanf("%f",valor);
+    for (int i=0;i<3;i++){
+        empresa[i].valor_acao = valor;
+    }
+    printf("\nAlterado com sucesso!");
+    printf("%f",empresa[0].valor_acao);
+}
+
 void PrintarInfo(Emp empresa){
     printf("\nNome da empresa: %s",empresa.nome);
     printf("rea de atuação da empresa: %s",empresa.area_atuacao);
@@ -55,4 +65,7 @@ int main() {
         }
         if (j==0) printf("\n Nenhuma empresa.");
     }
+
+    float novoValor;
+    AlterarValores(empresa1,novoValor);
 }
