@@ -1,4 +1,4 @@
 sudo snap install code --classic
 && pamac install jdk-openjdk 
-&& pamac install spotify-launcher
+&& snap install spotify
 && pamac install git
