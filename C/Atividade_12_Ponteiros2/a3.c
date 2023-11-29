@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-    float array[10];
+    float *array[10];
 
     printf("Digite 10 numeros: ");
     for (int i=0;i<10;i++){
@@ -11,6 +11,6 @@ int main(){
     printf("Endereços:\n");
     
     for(int i=0;i<10;i++){
-        printf("%d",&array[i]);
+        printf("\n%d",&array[i]);
     }
 }
