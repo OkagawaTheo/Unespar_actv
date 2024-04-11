@@ -16,7 +16,7 @@ public class Calculator{
             num1 = s.nextDouble();
 
             System.out.println("Digite o segundo número: ");
-            num2 = s.nextFloat();47
+            num2 = s.nextFloat();
             
             System.out.print("\n[1] - adição\n[2] - subtração\n[3] - multiplicação\n[4] - divisão\n");
             System.out.print("\nDigite a operação: ");
