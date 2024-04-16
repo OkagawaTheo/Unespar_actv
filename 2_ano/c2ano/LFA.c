@@ -10,7 +10,6 @@ typedef struct Automato{
 
 }afdinfo;
 
-
 int main(){
     afdinfo afd; 
     int linhas_transicao, colunas_transicao;
@@ -39,10 +38,18 @@ int main(){
     colunas_transicao = afd.qtd_simbolos;
     int matriz_transicao[linhas_transicao][colunas_transicao];
 
-    printf("Matriz transição:\n");
+    printf("Matriz transição:\n"); //matriz da tabela de transição
     for (int i=0;i<linhas_transicao;i++){
         for(int j=0;j<colunas_transicao;j++){
             scanf("%d",&matriz_transicao[i][j]);
         }
     }
+    printf("\n Tabela de transição digitada: \n\n");
+    for (int i=0;i<linhas_transicao;i++){
+        for (int j=0;j<colunas_transicao;j++){
+            printf("\t%d",matriz_transicao[i][j]);
+        }
+    printf("\n");
+    }
 }
+
