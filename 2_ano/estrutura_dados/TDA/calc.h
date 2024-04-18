@@ -3,13 +3,13 @@
 
 typedef struct{
     int result;
-}Calc;
+}Calculadora;
 
-Calc *criarCalc();
+Calculadora *criarCalc();
 
-void destruir(Calc* calculadora);
-void soma(Calc* calculadora,int valor);
-void subtrair(Calc* calculadora, int valor);
-void multiplicar(Calc* calculadora, int valor);
-void imprimir(const Calc* calculadora);
+void destruir(Calculadora* calculadora);
+void somar(Calculadora* calculadora,int valor);
+void subtrair(Calculadora* calculadora, int valor);
+void multiplicar(Calculadora* calculadora, int valor);
+void imprimir(const Calculadora* calculadora);
 #endif
