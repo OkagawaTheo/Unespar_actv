@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct Automato{
     int estado_inicial;
@@ -10,10 +11,14 @@ typedef struct Automato{
 
 }afdinfo;
 
+bool verificacao(){
+
+}
+
 int main(){
     afdinfo afd; 
     int linhas_transicao, colunas_transicao;
-
+    char palavra[100];
     printf("\tAutomato Finito Deterministico\t\n\n");
     printf("Digite o estado inicial: "); 
     scanf("%d",&afd.estado_inicial);
@@ -51,5 +56,7 @@ int main(){
         }
     printf("\n");
     }
+    printf("Digite a palavra a ser testada: ");
+    scanf("%s",&palavra);
 }
 
