@@ -10,9 +10,12 @@ typedef struct Automato{
     char simbolos[100];
 
 }afdinfo;
-
-bool verificacao(){
-
+// fun para checar se os caracteres digitados pertencem ao conjunto
+bool VerificarAlfabeto(const afdinfo *afd,char caractere[]){ 
+    for (int i=0;i<afd->qtd_simbolos;i++){
+        if (afd->simbolos[i] == caractere[i]) return true;
+    }
+    return false;
 }
 
 int main(){
