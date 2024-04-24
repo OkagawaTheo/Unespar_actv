@@ -52,14 +52,19 @@ int main(){
             scanf("%d",&matriz_transicao[i][j]);
         }
     }
-    printf("\n Tabela de transição digitada: \n\n");
+    printf("\n-- Tabela de transição digitada: \n\n");
     for (int i=0;i<linhas_transicao;i++){
         for (int j=0;j<colunas_transicao;j++){
             printf("\t%d",matriz_transicao[i][j]);
         }
     printf("\n");
     }
-    printf("Digite a palavra a ser testada: ");
-    scanf("%s",&palavra);
+    while (palavra != "0"){ // temporario
+        printf("Digite a palavra a ser testada: ");
+        scanf("%s",&palavra);
+        bool verificacao = VerificarAlfabeto(&afd,palavra);
+        printf("\n%d",verificacao);
+    }
+    printf("\n\nFinalizado");
 }
 
