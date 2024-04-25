@@ -1,15 +1,16 @@
 #ifndef CALC_H_INCLUDED
 #define CALC_H_INCLUDED
 
-typedef struct{
-    int result;
+typedef struct {
+    int resultado;
 }Calculadora;
 
-Calculadora *criarCalc();
+// Funções da calculadora
+Calculadora *criarCalculadora();
+void destruirCalculadora(Calculadora* calc);
+void somar(Calculadora* calc, int valor);
+void subtrair(Calculadora* calc, int valor);
+void multiplicar(Calculadora* calc, int valor);
+void imprimirResultado(const Calculadora* calc);
 
-void destruir(Calculadora* calculadora);
-void somar(Calculadora* calculadora,int valor);
-void subtrair(Calculadora* calculadora, int valor);
-void multiplicar(Calculadora* calculadora, int valor);
-void imprimir(const Calculadora* calculadora);
-#endif
+#endif /* CALCULADORA_H */

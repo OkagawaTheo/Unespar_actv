@@ -1,23 +1,34 @@
 #include "calc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.c"
 
-Calculadora* criarCalc(){
-    Calculadora *calc = (Calculadora*)malloc(sizeof(Calculadora()));
-    if (calc != NULL){
-        calc > result = 0;
+Calculadora* criarCalculadora() {// inicia a calculadora
+
+    Calculadora *calc = (Calculadora*)malloc(sizeof(Calculadora));
+    if (calc != NULL) {
+        calc->resultado = 0;
     }
     return calc;
 }
-void destruir(Calculadora *calc){
+
+void destruirCalculadora(Calculadora *calc) {
     free(calc);
 }
-void somar(Calculadora* calc, int valor){
-    calc->result += valor;   
+
+void somar(Calculadora* calc, int valor) {
+    calc->resultado += valor;
 }
-void multiplicar(Calculadora* calc, int valor){
-    calc->result *= valor;   
+
+void subtrair(Calculadora* calc, int valor) {
+    calc->resultado -= valor;
 }
-void imprimir(const Calculadora* calc){
-    printf("Resultado: %d\n",calc->resultado);
+
+void multiplicar(Calculadora* calc, int valor) {
+    calc->resultado *= valor;
 }
+
+void imprimirResultado(const Calculadora* calc) {
+    printf("Resultado: %d\n", calc->resultado);
+}
+
