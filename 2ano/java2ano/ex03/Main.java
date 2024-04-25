@@ -26,4 +26,4 @@ public class Main {
         JOptionPane.showMessageDialog(null, "Logado com sucesso");
     }
 }
-// da pra usar stringbuilder pra colocar login e senha no mesmo tbm
+// da pra usar stringbuilder pra colocar login e senha no mesmo 
