@@ -1,28 +1,36 @@
 #include <stdio.h>
 
 typedef struct Aluno{
-    char nome[40];
-    int numero;
-    int nota;
-}Aluno;
+    char nome[100];
+    float nota;
+} Aluno;
 
+void preencher(Aluno *al){
+    printf("Digite nome: ");
+    fgets(al->nome,sizeof(al->nome),stdin);
+    printf("Digite nota: ");
+    scanf("%f", &al->nota);
+    getchar(); 
+}
+
+void mostrar(Aluno *al){
+    printf("Nome: %s", al->nome);
+    printf("Nota:\n %.2f", al->nota);
+    
+
+}
 
 int main(){
-    Aluno al;
-    printf("---Cadastro de aluno---\n\n\n");
+   Aluno al[3];
 
-    printf("Nome do aluno: ");
-    fflush(stdin);
-    fgets(al.nome,sizeof(al.nome),stdin);
-    
-    printf("Digite o numero do aluno: ");
-    scanf("%d",&al.numero);
+   for (int i = 0; i < 3; i++){
+        preencher(&al[i]);
+   }
 
-    printf("Nota do aluno: ");
-    scanf("%f",&al.nota);
+   printf("Nomes digitados:\n ");
+   
+   for (int i = 0; i < 3; i++){
+        mostrar(&al[i]);
+   }
 
-    printf("\nDados lidos:\n\n\n");
-    printf("Nome: %s",al.nome);
-    printf("\nNumero do aluno: %d",al.numero);
-    printf("\nNota: %.2f",al.nota);
 }
