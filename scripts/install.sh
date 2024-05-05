@@ -1,4 +1,5 @@
-sudo snap install code --classic
-&& pamac install jdk-openjdk 
-&& snap install spotify
-&& pamac install git
+
+sudo pacman -S jdk-openjdk git 
+sudo -Syu
+sudo snap install code --classic 
+sudo snap install spotify
