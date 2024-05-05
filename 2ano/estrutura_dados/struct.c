@@ -16,8 +16,6 @@ void preencher(Aluno *al){
 void mostrar(Aluno *al){
     printf("Nome: %s", al->nome);
     printf("Nota:\n %.2f", al->nota);
-    
-
 }
 
 int main(){
