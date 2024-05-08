@@ -23,7 +23,7 @@ double benchmark(){
 
     // for que faz os calculos de soma
     for (int i=0;i<MATRIZ_X;i++){
-        for (int j=0;j<MATRIZ_Y;j++){
+        for (int j=0;j<MATRIZ_Y;j++){ 
             soma += mat[i][j];
         }
     }
