@@ -11,7 +11,7 @@ public class Main {
             password = JOptionPane.showInputDialog("Password: ");
 
             if (password.equals("java8")) {
-                boolean flag = true;
+                continue;
             } else {
                 tentativas--;
                 if (tentativas > 0) {
