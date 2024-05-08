@@ -13,6 +13,7 @@ public class Main{
         r.atribuirValorResistencia();
         
         r.showMsg();
+        s.close();
 
     }
 }
