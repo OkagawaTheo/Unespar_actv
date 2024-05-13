@@ -4,38 +4,44 @@
 
 #define MATRIZ_X 1000
 #define MATRIZ_Y 1000
-// define valores para x e y da matriz
 
 double benchmark(){
     double soma = 0;
     double mat[MATRIZ_X][MATRIZ_Y];
 
-    srand(time(NULL)); // seed para gerar os números aleatórios
+    srand(time(NULL));
 
-    // for para preencher matriz com numeros aleatorios
-    for (int i=0;i<MATRIZ_X;i++){
-        for (int j=0;j<MATRIZ_Y;j++){
-            mat[i][j] = rand() / (double)RAND_MAX;
+    // Preencher matriz com números aleatórios e calcular a soma acumulada
+    for (int i = 0; i < MATRIZ_X; i++){
+        for (int j = 0; j < MATRIZ_Y; j++){
+            double num = rand() / (double)RAND_MAX;
+            soma += num;
+            mat[i][j] = soma; // Armazenar soma acumulada na matriz
         }
     }
 
-    clock_t start = clock(); //começa a contagem de tempo
+    clock_t start = clock();
 
-    // for que faz os calculos de soma
-    for (int i=0;i<MATRIZ_X;i++){
-        for (int j=0;j<MATRIZ_Y;j++){ 
-            soma += mat[i][j];
+    // Calcular soma dos elementos da matriz
+    for (int i = 0; i < MATRIZ_X; i++){
+        for (int j = 0; j < MATRIZ_Y; j++){ 
+            for (int k = 0; k < 100; k++) {
+                for (int h = 0; h < 10; h++) { // Aumenta o número de iterações
+                soma += mat[i][j];
+            } 
+            }
         }
     }
-    clock_t end = clock(); //termina a contagem de tempo
 
-    return ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0; //retorna o valor em milisegundos
+    clock_t end = clock();
+
+    return ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
 }
-
 
 int main(){
     double tempo = benchmark();
-    double tempo_segundos = tempo / 1000.0; // divide novamente o valor o tempo para obter em segundos
-    printf("Tempo em milisegundos: %.2f \n",tempo);
-    printf("Tempo em segundos: %.6f\n",tempo_segundos);
+    double tempo_segundos = tempo / 1000.0;
+    printf("Tempo em milisegundos: %.2f \n", tempo);
+    printf("Tempo em segundos: %.6f\n", tempo_segundos);
+    return 0;
 }
