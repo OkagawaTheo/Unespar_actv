@@ -14,7 +14,7 @@ public class BombaAgua {
 
     
     void intervaloBomba(){
-        for(int i=10;i>=0;i--){
+        for(int i=10;i>0;i--){
             System.out.printf("Bomba ligada.Tempo restante: %d\n",i);
         }
         
