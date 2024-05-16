@@ -17,7 +17,7 @@ int main(){
 	printf("Inserção de valores: \n");
 	
 	for (int i = 0; i < n; i++){
-		printf("%d \n", v[i];
+		printf("%d \n", v[i]);
 	}
 	
 	free(v);
