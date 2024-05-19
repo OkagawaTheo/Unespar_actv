@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
-// função para fazer a verificação da palavra digitada pelo usuario
+// Função para fazer a verificação da palavra digitada pelo usuário
 bool verificarPalavra(int estado_inicial, int estados_finais[], int qtd_estados_finais, int qtd_simbolos, char alfabeto[], int tabela_transicao[][10], char palavra[]) {
     int estado_atual = estado_inicial;
 
-    // laço de repetição para procurar a palavra no meio do alfabeto
-    for (int i = 0; palavra[i] != '\0'; i++) { //diferente de "final"
+    // Laço de repetição para procurar a palavra no meio do alfabeto
+    for (int i = 0; palavra[i] != '\0'; i++) {
         int indice_simbolo = -1;
         for (int j = 0; j < qtd_simbolos; j++) {
             if (palavra[i] == alfabeto[j]) {
@@ -14,16 +15,24 @@ bool verificarPalavra(int estado_inicial, int estados_finais[], int qtd_estados_
                 break;
             }
         }
-        // if feito para ver se o simbolo está ou não no alfabeto
+
+        // Verificar se o símbolo está ou não no alfabeto
         if (indice_simbolo == -1) {
-            printf("Símbolo invalido.\n");
+            printf("Símbolo inválido.\n");
             return false;
         }
-        
-        // Estado atual atualizado conforme transição
+
+        // Atualizar o estado atual conforme a transição
         estado_atual = tabela_transicao[estado_atual - 1][indice_simbolo];
+
+        // Verificar se a transição leva a um estado inválido
+        if (estado_atual == 0) {
+            printf("Transição inválida.\n");
+            return false;
+        }
     }
-        // ffazer comparação entre estado atual e final para se forem iguais retorna como true por ter conseguido "passar" por todos os caracteres e ter chego no ultimo que que é um final.
+
+    // Fazer a comparação entre estado atual e final
     for (int i = 0; i < qtd_estados_finais; i++) {
         if (estado_atual == estados_finais[i]) {
             return true;
@@ -32,7 +41,6 @@ bool verificarPalavra(int estado_inicial, int estados_finais[], int qtd_estados_
 
     return false;
 }
- 
 
 int main() {
     int estado_inicial, qtd_estados, qtd_estados_finais, qtd_simbolos;
@@ -48,7 +56,7 @@ int main() {
     printf("Digite a quantidade de estados finais: ");
     scanf("%d", &qtd_estados_finais);
 
-    printf("Digite os estados finais:");
+    printf("Digite os estados finais: ");
     for (int i = 0; i < qtd_estados_finais; i++) {
         scanf("%d", &estados_finais[i]); 
     }
@@ -61,8 +69,8 @@ int main() {
         scanf(" %c", &alfabeto[i]); 
     }
 
-    // Preencher a tabela de transicao
-    printf("Preencha a tabela de transicao (estado x símbolo):\n"); 
+    // Preencher a tabela de transição
+    printf("Preencha a tabela de transição (estado x símbolo):\n"); 
     for (int i = 0; i < qtd_estados; i++) {
         for (int j = 0; j < qtd_simbolos; j++) {
             printf("(Q%d, %c): ", i + 1, alfabeto[j]); 
@@ -85,13 +93,17 @@ int main() {
     }
 
     // Verificar palavra digitada pelo usuário
-    char palavra[100];
-    printf("\nDigite a palavra a ser verificada: ");
-    scanf("%s", palavra);
-
-    // verificamos se a funcao verificar palabra é verdadeira, caso for sera impressa a mensagem que ela é aceita, caso não, ela não é aceita.
-    if (verificar_palavra(estado_inicial, estados_finais, qtd_estados_finais, qtd_simbolos, alfabeto, tabela_transicao, palavra)) 
-    printf("A palavra \"%s\" é aceita pelo AFD.\n", palavra);
-        
-    else printf("A palavra \"%s\" não é aceita pelo AFD.\n", palavra);
+    while(true){
+        char palavra[100];
+        printf("\nDigite a palavra a ser verificada ('0' pra sair): ");
+        scanf("%s", palavra);
+        if (strcmp(palavra,"0") == 0) break; // para dar break se usuario digitar 0
+        // Verificamos se a função verificar palavra é verdadeira, caso for será impressa a mensagem que ela é aceita, caso não, ela não é aceita.
+        if (verificarPalavra(estado_inicial, estados_finais, qtd_estados_finais, qtd_simbolos, alfabeto, tabela_transicao, palavra)) 
+            printf("A palavra \"%s\" é aceita pelo AFD.\n", palavra);
+        else 
+            printf("A palavra \"%s\" não é aceita pelo AFD.\n", palavra);
+    }
+    
+    return 0;
 }
