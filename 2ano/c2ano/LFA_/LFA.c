@@ -79,7 +79,7 @@ int main() {
     }
 
     printf("\nTabela de Transição: \n");
-    printf("Estado   ");
+    printf("Estado    ");
     for (int i = 0; i < qtd_simbolos; i++) {
         printf("| %c ", alfabeto[i]);
     }
