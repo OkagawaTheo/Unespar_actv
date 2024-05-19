@@ -105,5 +105,4 @@ int main() {
             printf("A palavra \"%s\" não é aceita pelo AFD.\n", palavra);
     }
     
-    return 0;
 }
