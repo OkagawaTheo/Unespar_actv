@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 
@@ -6,7 +7,7 @@
 bool verificarPalavra(int estado_inicial, int estados_finais[], int qtd_estados_finais, int qtd_simbolos, char alfabeto[], int tabela_transicao[][10], char palavra[]) {
     int estado_atual = estado_inicial;
 
-    // Laço de repetição para procurar a palavra no meio do alfabeto
+    // Laço de repetição for para procurar a palavra no meio do alfabeto
     for (int i = 0; palavra[i] != '\0'; i++) {
         int indice_simbolo = -1;
         for (int j = 0; j < qtd_simbolos; j++) {
@@ -18,7 +19,6 @@ bool verificarPalavra(int estado_inicial, int estados_finais[], int qtd_estados_
 
         // Verificar se o símbolo está ou não no alfabeto
         if (indice_simbolo == -1) {
-            printf("Símbolo inválido.\n");
             return false;
         }
 
@@ -69,7 +69,7 @@ int main() {
         scanf(" %c", &alfabeto[i]); 
     }
 
-    // Preencher a tabela de transição
+    // Preencher a tabela de transiçãoz
     printf("Preencha a tabela de transição (estado x símbolo):\n"); 
     for (int i = 0; i < qtd_estados; i++) {
         for (int j = 0; j < qtd_simbolos; j++) {
@@ -99,10 +99,15 @@ int main() {
         scanf("%s", palavra);
         if (strcmp(palavra,"0") == 0) break; // para dar break se usuario digitar 0
         // Verificamos se a função verificar palavra é verdadeira, caso for será impressa a mensagem que ela é aceita, caso não, ela não é aceita.
-        if (verificarPalavra(estado_inicial, estados_finais, qtd_estados_finais, qtd_simbolos, alfabeto, tabela_transicao, palavra)) 
+        if (verificarPalavra(estado_inicial, estados_finais, qtd_estados_finais, qtd_simbolos, alfabeto, tabela_transicao, palavra)) {
             printf("A palavra \"%s\" é aceita pelo AFD.\n", palavra);
-        else 
+            fflush(stdin);
+            
+        }
+        else{ 
             printf("A palavra \"%s\" não é aceita pelo AFD.\n", palavra);
+            
+        }
     }
     
 }
