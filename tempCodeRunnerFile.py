@@ -1,1 +1,0 @@
-print(self.alfabeto_aux)
