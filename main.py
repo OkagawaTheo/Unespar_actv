@@ -10,12 +10,12 @@ class Turing:
         self.marcador_inicio: str = ""
         self.marcador_final: str = ""
         
-    def pegarInfos(self) -> None:
+    def catchInfo(self) -> None:
         self.qtd_letras = int(input("Digite a quantidade de letras do alfabeto: "))
 
         for i in range(self.qtd_letras):
             letra = input(f"Digite a letra {i+1}: ")
             self.alfabeto.append(letra)
-
+        
 maquina1 = Turing()
-maquina1.pegarInfos()
+maquina1.catchInfo()
