@@ -12,7 +12,7 @@ public class GuiDialogoMensagem extends JPanel {
 
     private void inicializarComponentes() {
         setLayout(null);
-        String path = "lago.gif";
+        String path = "feioso.jpg";
         imageIcon1 = new ImageIcon(getClass().getResource(path));
         String[] cbCaixasItens = {"Pergunta", "Informação", "Alerta", "Erro", "definida pelo usuário", "Somente Mensagem"};
         cbCaixas = new JComboBox<>(cbCaixasItens);
