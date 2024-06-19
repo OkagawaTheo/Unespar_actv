@@ -12,9 +12,9 @@ public class GuiDialogoMensagem extends JPanel {
 
     private void inicializarComponentes() {
         setLayout(null);
-        String path = "feioso.jpg";
-        imageIcon1 = new ImageIcon(getClass().getResource(path));
-        String[] cbCaixasItens = {"Pergunta", "Informação", "Alerta", "Erro", "definida pelo usuário", "Somente Mensagem"};
+        String path = "feioso2.jpg"; 
+        imageIcon1 = new ImageIcon(getClass().getResource(path)); 
+        String[] cbCaixasItens = {"Pergunta", "Informação", "Alerta", "Erro", "img definida usr", "Somente Mensagem"};
         cbCaixas = new JComboBox<>(cbCaixasItens);
         cbCaixas.setBounds(25, 40, 150, 25);
         add(cbCaixas) ;
@@ -38,7 +38,7 @@ public class GuiDialogoMensagem extends JPanel {
                         JOptionPane.showMessageDialog(null, "Ocorreu algum erro!", "Erro", JOptionPane.ERROR_MESSAGE);
                         break;
                     case 4:
-                        JOptionPane.showMessageDialog(null, "Usando um gif animado", "Personalizado", JOptionPane.INFORMATION_MESSAGE, imageIcon1) ;
+                        JOptionPane.showMessageDialog(null, "Gato feioso ridiculo todo acabado", "Personalizado", JOptionPane.INFORMATION_MESSAGE, imageIcon1) ;
                         break;
                     case 5:
                         JOptionPane.showMessageDialog(null, "Caixa de mensagem simples", "Somente mensagem", JOptionPane.PLAIN_MESSAGE);

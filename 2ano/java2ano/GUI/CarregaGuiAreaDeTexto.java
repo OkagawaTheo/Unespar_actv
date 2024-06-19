@@ -8,7 +8,6 @@ public class CarregaGuiAreaDeTexto {
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new GuiAreaDeTexto());
         frame.setBounds(0,0,500,300);
-
         frame.setVisible (true);
     }
 }

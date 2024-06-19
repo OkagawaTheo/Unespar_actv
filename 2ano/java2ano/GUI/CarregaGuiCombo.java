@@ -8,7 +8,6 @@ public class CarregaGuiCombo {
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new GuiCombo());
         frame.setBounds(0,0,500,300);
-
-        frame.setVisible (true);
+        frame.setVisible (true);    
     }
 }
