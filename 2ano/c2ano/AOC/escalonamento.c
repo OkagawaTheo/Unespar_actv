@@ -16,15 +16,35 @@ void fitaCilindro(int tamanho_cilindro, char transicoes[]) {
 }
 
 void marcarCilindroEscalonamento(int tamanho_cilindro, int qtd_pedidos, char transicoes[], int pedidos_cilindro[]) {
-    int menorDistancia = pedidos_cilindro[0];
-    if 
+    //ordenar menor pra maior
+    for (int i = 0; i < qtd_pedidos - 1; i++) {
+        for (int j = 0; j < qtd_pedidos - i - 1; j++) {
+            if (pedidos_cilindro[j] > pedidos_cilindro[j + 1]) {
+                int temp = pedidos_cilindro[j];
+                pedidos_cilindro[j] = pedidos_cilindro[j + 1];
+                pedidos_cilindro[j + 1] = temp;
+            }
+        }
+    }
+    int pos_temp = 0;
 
-
-    // for (int i=0;i<qtd_pedidos;i++){
-    //     transicoes[menorDistancia-1] = 'x';
+    for (int i=0;i<qtd_pedidos;i++){
+        if (pedidos_cilindro[i] >= pos_temp){
+            transicoes[pedidos_cilindro[i]-1] = 'x';
+            fitaCilindro(tamanho_cilindro,transicoes);
+            pos_temp = pedidos_cilindro[i];
+        }
+    }
+    for (int i=qtd_pedidos-1;i>=0;i--){
+        if (pedidos_cilindro[i] < pos_temp){
+            transicoes[pedidos_cilindro[i]-1] = 'x';
+            fitaCilindro(tamanho_cilindro,transicoes);
+            pos_temp = pedidos_cilindro[i];
+        }
+    }
     fitaCilindro(tamanho_cilindro, transicoes);
     }
-}
+
 
 
 int main() {
