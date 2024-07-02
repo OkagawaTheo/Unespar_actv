@@ -10,8 +10,13 @@ int main(){
     printf("Digite a frase: ");
     fgets(frase,sizeof(frase),stdin);
     
-    for(int i=0;i<strlen(frase);i+=2){
-        printf("%c",frase[i]);
+  for (int i = 0; i < strlen(frase); i++) {
+        if (i % 2 == 0) disco1[i / 2] = frase[i];
+        else disco2[i / 2] = frase[i]; 
     }
+    
+    printf("Disco 1: %s\n", disco1);
+    printf("Disco 2: %s\n", disco2);
+    
 
 }
