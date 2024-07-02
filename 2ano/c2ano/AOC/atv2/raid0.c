@@ -13,18 +13,34 @@ void raid0(disc *discos_raid0, char *frase){
     }
 }
 
+void raid1(disc *discos_raid1,char *frase){
+    // disco 2 = copia
+    strcpy(discos_raid1->disco1,frase);
+    strcpy(discos_raid1->disco2,frase);
+
+}
+
 int main(){
     disc discos_raid0;
+    disc discos_raid1;
     char frase[100];
 
-    printf("Simulador de RAID 0\n");
     printf("Digite a frase: ");
     fgets(frase,sizeof(frase),stdin);
-    
+
+
+    printf("Exemplo de RAID 0: \n");
     raid0(&discos_raid0,frase);
-    
     printf("Disco 1: %s\n", discos_raid0.disco1);
     printf("Disco 2: %s\n", discos_raid0.disco2);
+    
+    printf("Exemplo de RAID 1:\n");
+    raid1(&discos_raid1,frase);
+    printf("Disco 1: %s\n", discos_raid1.disco1);
+    printf("Disco 2: %s\n", discos_raid1.disco2);
+
+    printf("Exemplo de RAID 4:\n");
+    
     
 
 }
