@@ -31,6 +31,9 @@ void raid4(disc *discos_raid4, char *frase) {
         else if (i % 3 == 1) discos_raid4->disco2[i/3] = frase[i];
         else discos_raid4->disco3[i/3] = frase[i];
     }
+    for (int i = 0; i < strlen(frase) / 3; i++) {
+        discos_raid4->disco_paridade[i] = discos_raid4->disco1[i] ^ discos_raid4->disco2[i] ^ discos_raid4->disco3[i];
+    }
 }
 
 int main() {
