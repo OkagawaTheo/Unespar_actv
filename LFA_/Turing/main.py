@@ -56,12 +56,12 @@ class Turing:
         while True:
             entrada_usuario = list(input("Insira a palavra a ser verificada: ")) 
            
-            if not all(char in self.alfabeto for char in entrada_usuario):
+            if not all(char in self.alfabeto for char in entrada_usuario): # se todos os char n estiverem na entrada
                 print("Palavra não aceita. Símbolos inválidos.")
                 continue
 
             # Inicialização da fita e da cabeça de leitura/escrita
-            fita = [self.marcador_inicio] + entrada_usuario + [self.marcador_branco] * 100  # Adicionando espaço branco na fita
+            fita = [self.marcador_inicio] + entrada_usuario + [self.marcador_branco] * 20  # Adicionando espaço branco na fita
             posicao_cabeca = 1  # Começa após o marcador inicial
             estado_atual = self.estado_inicial
             palavra_aceita = False  
@@ -77,9 +77,9 @@ class Turing:
 
             
                 fita[posicao_cabeca] = simbolo_para_escrever
-                if direcao == "R":
+                if direcao == "R".upper():
                     posicao_cabeca += 1
-                elif direcao == "L":
+                elif direcao == "L".upper():
                     posicao_cabeca -= 1
 
                 estado_atual = proximo_estado
@@ -90,6 +90,8 @@ class Turing:
 
             if palavra_aceita:
                 print("Palavra aceita.")
+                print(fita)
+                
             else:
                 print("Palavra não aceita.")
 
