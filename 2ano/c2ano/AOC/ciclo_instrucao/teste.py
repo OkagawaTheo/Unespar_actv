@@ -1,43 +1,31 @@
-def menu():
-        print("="*30)
-        print(
-"""
-1 - Inserir
-2 - Ver Instruções
-3 - Executar
-4 - Sair
-""")
-        print("="*30)
-    
-
 class CicloInstrucao:
     def __init__(self):
-        self.PC = 0;
+        self.PC = 0
         self.MBR = 0
         self.flagZero = False
-        self.flagNegativo = False
-        self.memoria = [0]*256
+        self.flagNegativa = False
+        self.memoria = [0] * 256
         self.instrucoes = []
 
     def entrada_usuario(self):
-        print("Digite as instruções do programa (4 para sair da inserção)");
-        while(True):
-            instrucao = input("Digite o codigo da instrução: ")
-            if instrucao == '4':
-                break;
+        print("Digite as instruções do programa (ou '4' para sair da inserção de dados):")
+        while True:
+            instrucao = input("\nDigite o código da instrução: ")
+            if instrucao == "4":
+                break
+
             op1 = op2 = ""
-            if instrucao not in ["000001","001010","001011","001100"]:
+            if instrucao not in ["000001", "001010", "001011", "001100"]:
                 op1 = input("Digite o primeiro operando: ")
                 if instrucao not in ["000011", "000100", "000101", "000110", "000111", "001000", "001001", "001111"]:
                     op2 = input("Digite o segundo operando: ")
-                
-            self.instrucoes.append(f"{op1},{op2}") #append formatado por virgula
-            print(self.instrucoes)
+
+            self.instrucoes.append(f"{instrucao} {op1} {op2}")
 
     def ver_instrucoes(self):
-        print("="*30)
+        print("==================================================================================")
         print("= INSTRUÇÕES: =")
-        print("="*30)
+        print("==================================================================================")
         print(f"{'COD':<10} {'OP1':<10} {'OP2':<10} {'RESULTADOS':<25}")
         instrucoes_desc = {
             "000001": "MBR <- #POS",
@@ -55,81 +43,69 @@ class CicloInstrucao:
             "001100": "NOP"
         }
         for cod, desc in instrucoes_desc.items():
-            print(f"{cod:<10} {'-':<10} {'-':<10} {desc:<25}") # formata pra uma tabela
+            print(f"{cod:<10} {'-':<10} {'-':<10} {desc:<25}")
+
         for instrucao in self.instrucoes:
             print(instrucao)
 
-    def executar_instrucoes(self):
-        print("="*30)
+    def executar_todas_instrucoes(self):
+        print("==================================================================================")
         print("EXECUTANDO")
-        print("="*30)
         for instrucao in self.instrucoes:
-            self.executar_instrucoes(instrucao)
+            self.executa_instrucao(instrucao)
             self.exibe_ciclo()
             print()
 
-    def executa_instrucoes(self, instrucao):
-        componentes = instrucao.split() 
-        opcode = componentes[0];
-        if opcode == "000001": #
+    def executa_instrucao(self, instrucao):
+        componentes = instrucao.split()
+        opcode = componentes[0]
+
+        if opcode == "000001":
             self.inst000001(int(componentes[1]))
-
-        elif opcode == "000010": 
-            self.inst000010(int(componentes[1]),int(componentes[2]))
-
-        elif opcode == "000011": 
+        elif opcode == "000010":
+            self.inst000010(int(componentes[1]), int(componentes[2]))
+        elif opcode == "000011":
             self.inst000011(int(componentes[1]))
-
         elif opcode == "000100":
             self.inst000100(int(componentes[1]))
-
         elif opcode == "000101":
             self.inst000101(int(componentes[1]))
-
         elif opcode == "000110":
             self.inst000110(int(componentes[1]))
-
         elif opcode == "000111":
             self.inst000111(int(componentes[1]))
-
         elif opcode == "001000":
             self.inst001000(int(componentes[1]))
-
         elif opcode == "001001":
             self.inst001001(int(componentes[1]))
-
         elif opcode == "001010":
             self.inst001010()
-
         elif opcode == "001011":
             self.inst001011()
-
         elif opcode == "001111":
             self.inst001111(int(componentes[1]))
-
         elif opcode == "001100":
             self.inst001100()
-
         else:
             print("Instrução inválida")
-
         self.PC += 1
 
-
     def exibe_ciclo(self):
-        componentes = self.instrucoes[self.pc-1].split() # pega pos atual e divide
+        componentes = self.instrucoes[self.PC - 1].split()
         opcode = componentes[0]
-        op1 = componentes[1] if len(componentes) > 1 else ''
-        op2 = componentes[2] if len(componentes) > 2 else '' #pega a "segunda parte" da instrução caso componente(instrucao binaria) for maior que 1/2
-        print("="*30)
+        op1 = componentes[1] if len(componentes) > 1 else ""
+        op2 = componentes[2] if len(componentes) > 2 else ""
+
+        print("==================================================================================")
         print("CÁLCULO DO ENDEREÇO DA INSTRUÇÃO:")
-        print(f"PC: {self.PC:06d}") # formatação pra deixar 0's a esquerda
+        print(f"PC: {self.PC}")
         print("\nBUSCANDO A INSTRUÇÃO:")
-        print(f"<OPCODE>: {opcode}")
-        print(f"<OP1>: {op1}")
-        print(f"<OP2>: {op2}")
+        print(f"IR <OPCODE>: {opcode}")
+        print(f"IR <OP1>: {op1}")
+        print(f"IR <OP2>: {op2}")
         print("\nDECODIFICANDO A INSTRUÇÃO:")
         
+        # Simplified display logic based on opcode
         print("OPERAÇÃO DE DADOS:")
         if opcode == "000001":
             print(f"MBR <- {op1}")
@@ -152,7 +128,7 @@ class CicloInstrucao:
         elif opcode == "001010":
             print("MBR <- sqrt(MBR)")
         elif opcode == "001011":
-            print("MBR <- MBR")
+            print("MBR <- -MBR")
         elif opcode == "001111":
             print(f"{op1} <- MBR")
         elif opcode == "001100":
@@ -161,23 +137,24 @@ class CicloInstrucao:
             print("OPERAÇÃO FINALIZADA!")
             exit(0)
 
-        print("="*30)
+        print("==================================================================================")
 
-    def inst000001(self,pos):
+    def inst000001(self, pos):
         self.MBR = pos
         self.atualiza_flags()
 
-    def inst000010(self,pos,dado):
+    def inst000010(self, pos, dado):
         self.memoria[pos] = dado
 
-    def inst000011(self,pos):
+    def inst000011(self, pos):
         self.MBR += self.memoria[pos]
+        self.atualiza_flags()
 
-    def inst000100(self,pos):
+    def inst000100(self, pos):
         self.MBR -= pos
         self.atualiza_flags()
 
-    def inst000101(self,pos):
+    def inst000101(self, pos):
         self.MBR *= pos
         self.atualiza_flags()
 
@@ -215,19 +192,31 @@ class CicloInstrucao:
         self.flagNegativa = (self.MBR < 0)
 
 
+def main():
+    ci = CicloInstrucao()
+    while True:
+        print("==================================================================================")
+        print("= OPÇÕES: =")
+        print("==================================================================================")
+        print("1. INSERIR")
+        print("2. VER INSTRUÇÕES")
+        print("3. EXECUTAR")
+        print("4. SAIR DO PROGRAMA")
+        print("==================================================================================")
+        opcao = int(input("Escolha uma opção: "))
 
-ci = CicloInstrucao()
-while (True):
-    menu()
-    opcao = int(input("Digite a opção: "))
-    if opcao == 1:
-        ci.entrada_usuario()
-    elif opcao == 2:
-        ci.ver_instrucoes()
-    elif opcao == 3:
-        ci.executar_instrucoes()
-    elif opcao == 4:
-        print("Encerrando!")
-        break
-    else:
-        print("Opção inválida!")
+        if opcao == 1:
+            ci.entrada_usuario()
+        elif opcao == 2:
+            ci.ver_instrucoes()
+        elif opcao == 3:
+            ci.executar_todas_instrucoes()
+        elif opcao == 4:
+            print("Encerrando!")
+            break
+        else:
+            print("Opção inválida!")
+
+
+if __name__ == "__main__":
+    main()
