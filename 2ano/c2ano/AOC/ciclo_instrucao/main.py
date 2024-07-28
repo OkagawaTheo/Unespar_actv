@@ -1,18 +1,17 @@
 def menu():
-        print("="*30)
-        print(
+    print("="*30)
+    print(
 """
 1 - Inserir
 2 - Ver Instruções
 3 - Executar
 4 - Sair
 """)
-        print("="*30)
-    
+    print("="*30)
 
 class CicloInstrucao:
     def __init__(self):
-        self.PC = 0;
+        self.PC = 0
         self.MBR = 0
         self.flagZero = False
         self.flagNegativo = False
@@ -20,19 +19,25 @@ class CicloInstrucao:
         self.instrucoes = []
 
     def entrada_usuario(self):
-        print("Digite as instruções do programa (4 para sair da inserção)");
-        while(True):
-            instrucao = input("Digite o codigo da instrução: ")
+        print("Digite as instruções do programa (4 para sair da inserção)")
+        while True:
+            instrucao = input("Digite o código da instrução: ")
             if instrucao == '4':
-                break;
+                break
             op1 = op2 = ""
-            if instrucao not in ["000001","001010","001011","001100"]:
+            if instrucao in ["000001", "001010", "001011", "001100"]:
+                # Para essas instruções, não pedimos o segundo operando
+                op1 = input("Digite o primeiro operando: ")
+            else:
                 op1 = input("Digite o primeiro operando: ")
                 if instrucao not in ["000011", "000100", "000101", "000110", "000111", "001000", "001001", "001111"]:
                     op2 = input("Digite o segundo operando: ")
-                
-            self.instrucoes.append(f"{op1},{op2}") #append formatado por virgula
-            print(self.instrucoes)
+
+            # Adiciona a instrução com os operandos apropriados
+            if instrucao in ["000001", "001010", "001011", "001100"]:
+                self.instrucoes.append(f"{instrucao} {op1}")
+            else:
+                self.instrucoes.append(f"{instrucao} {op1} {op2}")
 
     def ver_instrucoes(self):
         print("="*30)
@@ -55,75 +60,69 @@ class CicloInstrucao:
             "001100": "NOP"
         }
         for cod, desc in instrucoes_desc.items():
-            print(f"{cod:<10} {'-':<10} {'-':<10} {desc:<25}") # formata pra uma tabela
+            print(f"{cod:<10} {'-':<10} {'-':<10} {desc:<25}")  # Formatação para uma tabela
         for instrucao in self.instrucoes:
             print(instrucao)
 
-    def executar_instrucoes(self):
+    def rodar_instrucoes(self):
         print("="*30)
         print("EXECUTANDO")
         print("="*30)
-        for instrucao in self.instrucoes:
-            self.executar_instrucoes(instrucao)
+        while self.PC < len(self.instrucoes):
+            instrucao = self.instrucoes[self.PC]
+            self.executa_instrucoes(instrucao)
             self.exibe_ciclo()
             print()
 
     def executa_instrucoes(self, instrucao):
-        componentes = instrucao.split() 
-        opcode = componentes[0];
-        if opcode == "000001": #
-            self.inst000001(int(componentes[1]))
+        componentes = instrucao.split()
+        opcode = componentes[0]
+        op1 = int(componentes[1]) if len(componentes) > 1 else None
+        op2 = int(componentes[2]) if len(componentes) > 2 else None
 
-        elif opcode == "000010": 
-            self.inst000010(int(componentes[1]),int(componentes[2]))
-
-        elif opcode == "000011": 
-            self.inst000011(int(componentes[1]))
-
+        if opcode == "000001":
+            self.inst000001(op1)
+        elif opcode == "000010":
+            self.inst000010(op1, op2)
+        elif opcode == "000011":
+            self.inst000011(op1)
         elif opcode == "000100":
-            self.inst000100(int(componentes[1]))
-
+            self.inst000100(op1)
         elif opcode == "000101":
-            self.inst000101(int(componentes[1]))
-
+            self.inst000101(op1)
         elif opcode == "000110":
-            self.inst000110(int(componentes[1]))
-
+            self.inst000110(op1)
         elif opcode == "000111":
-            self.inst000111(int(componentes[1]))
-
+            self.inst000111(op1)
         elif opcode == "001000":
-            self.inst001000(int(componentes[1]))
-
+            self.inst001000(op1)
         elif opcode == "001001":
-            self.inst001001(int(componentes[1]))
-
+            self.inst001001(op1)
         elif opcode == "001010":
             self.inst001010()
-
         elif opcode == "001011":
             self.inst001011()
-
         elif opcode == "001111":
-            self.inst001111(int(componentes[1]))
-
+            self.inst001111(op1)
         elif opcode == "001100":
             self.inst001100()
-
         else:
             print("Instrução inválida")
 
         self.PC += 1
 
-
     def exibe_ciclo(self):
-        componentes = self.instrucoes[self.pc-1].split() # pega pos atual e divide
+        if self.PC <= 0:
+            return
+        
+        componentes = self.instrucoes[self.PC - 1].split()
         opcode = componentes[0]
         op1 = componentes[1] if len(componentes) > 1 else ''
-        op2 = componentes[2] if len(componentes) > 2 else '' #pega a "segunda parte" da instrução caso componente(instrucao binaria) for maior que 1/2
+        op2 = componentes[2] if len(componentes) > 2 else ''
+        
         print("="*30)
         print("CÁLCULO DO ENDEREÇO DA INSTRUÇÃO:")
-        print(f"PC: {self.PC:06d}") # formatação pra deixar 0's a esquerda
+        print(f"PC: {self.PC:06d}")  # Formatação para deixar 0's à esquerda
         print("\nBUSCANDO A INSTRUÇÃO:")
         print(f"<OPCODE>: {opcode}")
         print(f"<OP1>: {op1}")
@@ -152,7 +151,7 @@ class CicloInstrucao:
         elif opcode == "001010":
             print("MBR <- sqrt(MBR)")
         elif opcode == "001011":
-            print("MBR <- MBR")
+            print("MBR <- -MBR")
         elif opcode == "001111":
             print(f"{op1} <- MBR")
         elif opcode == "001100":
@@ -163,38 +162,59 @@ class CicloInstrucao:
 
         print("="*30)
 
-    def inst000001(self,pos):
-        self.MBR = pos
+    def inst000001(self, pos):
+        if 0 <= pos < len(self.memoria):
+            self.MBR = self.memoria[pos]
+        else:
+            print("Endereço fora dos limites da memória")
         self.atualiza_flags()
 
-    def inst000010(self,pos,dado):
-        self.memoria[pos] = dado
+    def inst000010(self, pos, dado):
+        if 0 <= pos < len(self.memoria):
+            self.memoria[pos] = dado
+        else:
+            print("Endereço fora dos limites da memória")
 
-    def inst000011(self,pos):
-        self.MBR += self.memoria[pos]
+    def inst000011(self, pos):
+        if 0 <= pos < len(self.memoria):
+            self.MBR += self.memoria[pos]
+        else:
+            print("Endereço fora dos limites da memória")
+        self.atualiza_flags()
 
-    def inst000100(self,pos):
+    def inst000100(self, pos):
         self.MBR -= pos
         self.atualiza_flags()
 
-    def inst000101(self,pos):
+    def inst000101(self, pos):
         self.MBR *= pos
         self.atualiza_flags()
 
     def inst000110(self, pos):
-        self.MBR /= pos
+        if pos != 0:
+            self.MBR /= pos
+            
         self.atualiza_flags()
 
     def inst000111(self, lin):
-        self.PC = lin
+        if 0 <= lin < len(self.instrucoes):
+            self.PC = lin
+        else:
+            print("Linha fora dos limites")
 
     def inst001000(self, lin):
         if self.flagZero:
-            self.PC = lin
+            if 0 <= lin < len(self.instrucoes):
+                self.PC = lin
+            else:
+                print("Linha fora dos limites")
 
     def inst001001(self, lin):
-        if self.flagNegativa:
-            self.PC = lin
+        if self.flagNegativo:
+            if 0 <= lin < len(self.instrucoes):
+                self.PC = lin
+            else:
+                print("Linha fora dos limites")
 
     def inst001010(self):
         self.MBR = int(self.MBR ** 0.5)
@@ -205,19 +225,20 @@ class CicloInstrucao:
         self.atualiza_flags()
 
     def inst001111(self, pos):
-        self.memoria[pos] = self.MBR
+        if 0 <= pos < len(self.memoria):
+            self.memoria[pos] = self.MBR
+        else:
+            print("Endereço fora dos limites da memória")
 
     def inst001100(self):
         pass
 
     def atualiza_flags(self):
         self.flagZero = (self.MBR == 0)
-        self.flagNegativa = (self.MBR < 0)
-
-
+        self.flagNegativo = (self.MBR < 0)
 
 ci = CicloInstrucao()
-while (True):
+while True:
     menu()
     opcao = int(input("Digite a opção: "))
     if opcao == 1:
@@ -227,7 +248,7 @@ while (True):
     elif opcao == 3:
         ci.executar_instrucoes()
     elif opcao == 4:
-        print("Encerrando!")
+        print("Encerrando")
         break
     else:
-        print("Opção inválida!")
+        print("Opção inválida")
