@@ -246,7 +246,7 @@ while True:
     elif opcao == 2:
         ci.ver_instrucoes()
     elif opcao == 3:
-        ci.executar_instrucoes()
+        ci.rodar_instrucoes()
     elif opcao == 4:
         print("Encerrando")
         break

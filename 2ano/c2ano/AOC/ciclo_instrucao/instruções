@@ -1,0 +1,11 @@
+Instruções para compilar e rodar o código:
+
+- Tenha python3 instalado no computador ou um ambiente de desenvolvimento tal como Visual studio Code.
+
+Compilar no terminal:
+    - Acesse pelo terminal o diretório de onde está localizado seu arquivo .py utilizando o comando cd
+    - Digite python3 main.py (ou o nome do seu arquivo python)
+
+Compilar por uma IDE:
+    - Clique no botão RUN localizado no canto superior direito ou use o atalho ctrl + shift + n
+
