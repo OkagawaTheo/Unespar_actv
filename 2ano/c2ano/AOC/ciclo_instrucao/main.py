@@ -25,9 +25,11 @@ class CicloInstrucao:
             if instrucao == '4':
                 break
             op1 = op2 = ""
-            if instrucao in ["000001", "001010", "001011", "001100"]:
+            if instrucao in ["000001", "001010", "001011"]:
                 # Para essas instruções, não pedimos o segundo operando
                 op1 = input("Digite o primeiro operando: ")
+            elif instrucao in ["001100"]:
+                pass
             else:
                 op1 = input("Digite o primeiro operando: ")
                 if instrucao not in ["000011", "000100", "000101", "000110", "000111", "001000", "001001", "001111"]:
