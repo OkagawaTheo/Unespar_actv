@@ -15,90 +15,90 @@ public class MovimentoCircular {
 
         frame.getContentPane().setBackground(new Color(30, 30, 30));
 
-        JLabel titleLabel = new JLabel("Cálculo de Carga Elétrica", JLabel.CENTER);
-        titleLabel.setBounds(50, 10, 400, 40);
-        titleLabel.setForeground(new Color(255, 255, 0));
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
-        frame.add(titleLabel);
+        JLabel tituloLabel = new JLabel("Cálculo de Carga Elétrica", JLabel.CENTER);
+        tituloLabel.setBounds(50, 10, 400, 40);
+        tituloLabel.setForeground(new Color(255, 255, 0));
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 22));
+        frame.add(tituloLabel);
 
-        JLabel massLabel = new JLabel("Massa do objeto (kg):");
-        massLabel.setBounds(50, 60, 200, 25);
-        massLabel.setForeground(Color.WHITE);
-        massLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        frame.add(massLabel);
+        JLabel massaLabel = new JLabel("Massa do objeto (kg):");
+        massaLabel.setBounds(50, 60, 200, 25);
+        massaLabel.setForeground(Color.WHITE);
+        massaLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        frame.add(massaLabel);
 
-        JTextField massField = new JTextField();
-        massField.setBounds(250, 60, 150, 25);
-        massField.setBackground(new Color(60, 63, 65));
-        massField.setForeground(Color.WHITE);
-        frame.add(massField);
+        JTextField massaCampo = new JTextField();
+        massaCampo.setBounds(250, 60, 150, 25);
+        massaCampo.setBackground(new Color(60, 63, 65));
+        massaCampo.setForeground(Color.WHITE);
+        frame.add(massaCampo);
 
-        JLabel velocityLabel = new JLabel("Velocidade (m/s):");
-        velocityLabel.setBounds(50, 100, 200, 25);
-        velocityLabel.setForeground(Color.WHITE);
-        velocityLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        frame.add(velocityLabel);
+        JLabel velocidadeLabel = new JLabel("Velocidade (m/s):");
+        velocidadeLabel.setBounds(50, 100, 200, 25);
+        velocidadeLabel.setForeground(Color.WHITE);
+        velocidadeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        frame.add(velocidadeLabel);
 
-        JTextField velocityField = new JTextField();
-        velocityField.setBounds(250, 100, 150, 25);
-        velocityField.setBackground(new Color(60, 63, 65));
-        velocityField.setForeground(Color.WHITE);
-        frame.add(velocityField);
+        JTextField velocidadeCampo = new JTextField();
+        velocidadeCampo.setBounds(250, 100, 150, 25);
+        velocidadeCampo.setBackground(new Color(60, 63, 65));
+        velocidadeCampo.setForeground(Color.WHITE);
+        frame.add(velocidadeCampo);
 
-        JLabel radiusLabel = new JLabel("Raio da órbita (m):");
-        radiusLabel.setBounds(50, 140, 200, 25);
-        radiusLabel.setForeground(Color.WHITE);
-        radiusLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        frame.add(radiusLabel);
+        JLabel raioLabel = new JLabel("Raio da órbita (m):");
+        raioLabel.setBounds(50, 140, 200, 25);
+        raioLabel.setForeground(Color.WHITE);
+        raioLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        frame.add(raioLabel);
 
-        JTextField radiusField = new JTextField();
-        radiusField.setBounds(250, 140, 150, 25);
-        radiusField.setBackground(new Color(60, 63, 65));
-        radiusField.setForeground(Color.WHITE);
-        frame.add(radiusField);
+        JTextField raioCampo = new JTextField();
+        raioCampo.setBounds(250, 140, 150, 25);
+        raioCampo.setBackground(new Color(60, 63, 65));
+        raioCampo.setForeground(Color.WHITE);
+        frame.add(raioCampo);
 
-        JLabel chargeLabel = new JLabel("Carga do objeto (C):");
-        chargeLabel.setBounds(50, 180, 200, 25);
-        chargeLabel.setForeground(Color.WHITE);
-        chargeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        frame.add(chargeLabel);
+        JLabel cargaLabel = new JLabel("Carga do objeto (C):");
+        cargaLabel.setBounds(50, 180, 200, 25);
+        cargaLabel.setForeground(Color.WHITE);
+        cargaLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        frame.add(cargaLabel);
 
-        JTextField chargeField = new JTextField();
-        chargeField.setBounds(250, 180, 150, 25);
-        chargeField.setBackground(new Color(60, 63, 65));
-        chargeField.setForeground(Color.WHITE);
-        frame.add(chargeField);
+        JTextField cargaCampo = new JTextField();
+        cargaCampo.setBounds(250, 180, 150, 25);
+        cargaCampo.setBackground(new Color(60, 63, 65));
+        cargaCampo.setForeground(Color.WHITE);
+        frame.add(cargaCampo);
 
-        JButton calculateButton = new JButton("Descobrir Carga");
-        calculateButton.setBounds(175, 230, 150, 40);
-        calculateButton.setFont(new Font("Arial", Font.BOLD, 16));
-        calculateButton.setBackground(new Color(255, 215, 0));
-        calculateButton.setForeground(Color.BLACK);
-        frame.add(calculateButton);
+        JButton calcularBotao = new JButton("Descobrir Carga");
+        calcularBotao.setBounds(175, 230, 150, 40);
+        calcularBotao.setFont(new Font("Arial", Font.BOLD, 16));
+        calcularBotao.setBackground(new Color(255, 215, 0));
+        calcularBotao.setForeground(Color.BLACK);
+        frame.add(calcularBotao);
 
-        JPanel resultPanel = new JPanel();
-        resultPanel.setBounds(50, 290, 400, 80);
-        resultPanel.setBackground(new Color(50, 50, 50));
-        resultPanel.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
-        frame.add(resultPanel);
+        JPanel painelResultado = new JPanel();
+        painelResultado.setBounds(50, 290, 400, 80);
+        painelResultado.setBackground(new Color(50, 50, 50));
+        painelResultado.setBorder(BorderFactory.createLineBorder(new Color(255, 215, 0), 2));
+        frame.add(painelResultado);
 
-        JLabel resultLabel = new JLabel("O valor da carga elétrica Q será exibido aqui.");
-        resultLabel.setForeground(new Color(135, 206, 250));
-        resultLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        resultPanel.add(resultLabel);
+        JLabel resultadoLabel = new JLabel("O valor da carga elétrica Q será exibido aqui.");
+        resultadoLabel.setForeground(new Color(135, 206, 250));
+        resultadoLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        painelResultado.add(resultadoLabel);
 
-        calculateButton.addActionListener(new ActionListener() {
+        calcularBotao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    double m = Double.parseDouble(massField.getText());
-                    double v = Double.parseDouble(velocityField.getText());
-                    double r = Double.parseDouble(radiusField.getText());
-                    double q = Double.parseDouble(chargeField.getText());
+                    double massa = Double.parseDouble(massaCampo.getText());
+                    double velocidade = Double.parseDouble(velocidadeCampo.getText());
+                    double raio = Double.parseDouble(raioCampo.getText());
+                    double carga = Double.parseDouble(cargaCampo.getText());
 
-                    double Q = (m * v * v * r) / (k_e * q);
+                    double cargaNecessaria = (massa * velocidade * velocidade * raio) / (k_e * carga);
 
-                    resultLabel.setText(String.format("A carga necessária é Q = %.4e C", Q));
+                    resultadoLabel.setText(String.format("A carga necessária é Q = %.4e C", cargaNecessaria));
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(frame, "Por favor, insira valores válidos!", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
