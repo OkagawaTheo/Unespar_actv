@@ -1,0 +1,30 @@
+CREATE TABLE Usuarios(
+			Codigo VARCHAR(5) NOT NULL,
+			Nome VARCHAR(100) NOT NULL,
+    			CPF VARCHAR(11) NOT NULL,                     
+			Data_Nascimento DATE NOT NULL,   
+    			Endereco VARCHAR(100),                      
+			Sexo ENUM('M', 'F') NOT NULL,
+			Email VARCHAR(100) NOT NULL
+);
+INSERT INTO Usuarios (Nome, CPF, Data_Nascimento, Endereco, Sexo, Email) VALUES
+('Alice Xavier', '21234567890', '1992-09-01', 'Rua Amapá, 145', 'F', 'alice.xavier@gmail.com'),
+('Bruno Farias', '22234567890', '1987-02-14', 'Av. Santa Catarina, 234', 'M', 'bruno.farias@yahoo.com'),
+('Camila Ferreira', '23234567890', '1995-06-18', 'Rua Maranhão, 567', 'F', 'camila.ferreira@outlook.com'),
+('Diego Lopes', '24234567890', '1990-11-11', 'Rua Rio Grande do Sul, 678', 'M', 'diego.lopes@gmail.com'),
+('Elisa Andrade', '25234567890', '1993-08-29', 'Av. Acre, 789', 'F', 'elisa.andrade@hotmail.com'),
+('Felipe Gonçalves', '26234567890', '1989-03-15', 'Rua Pernambuco, 123', 'M', 'felipe.goncalves@gmail.com'),
+('Gabriela Nunes', '27234567890', '1992-05-22', 'Av. São Paulo, 456', 'F', 'gabriela.nunes@gmail.com'),
+('Henrique Vieira', '28234567890', '1994-10-07', 'Rua Bahia, 789', 'M', 'henrique.vieira@gmail.com'),
+('Ingrid Alves', '29234567890', '1988-04-13', 'Rua Paraná, 951', 'F', 'ingrid.alves@yahoo.com'),
+('Júlio Cesar', '30234567890', '1991-12-24', 'Av. Amazonas, 753', 'M', 'julio.cesar@gmail.com'),
+('Kelly Souza', '31234567890', '1990-01-29', 'Rua Goiás, 234', 'F', 'kelly.souza@gmail.com'),
+('Lucas Pinto', '32234567890', '1986-05-31', 'Av. Tocantins, 852', 'M', 'lucas.pinto@hotmail.com'),
+('Marina Dias', '33234567890', '1992-07-16', 'Rua Mato Grosso, 127', 'F', 'marina.dias@gmail.com'),
+('Nathalia Barreto', '34234567890', '1995-02-18', 'Rua Bahia, 431', 'F', 'nathalia.barreto@gmail.com'),
+('Otávio Siqueira', '35234567890', '1993-09-12', 'Av. Paraná, 614', 'M', 'otavio.siqueira@gmail.com'),
+('Paula Fernandes', '36234567890', '1989-06-08', 'Rua Maranhão, 821', 'F', 'paula.fernandes@gmail.com'),
+('Renato Ribeiro', '37234567890', '1987-11-04', 'Av. Espírito Santo, 932', 'M', 'renato.ribeiro@gmail.com'),
+('Sara Melo', '38234567890', '1991-12-14', 'Rua Alagoas, 673', 'F', 'sara.melo@hotmail.com'),
+('Thiago Lima', '39234567890', '1990-07-09', 'Av. Sergipe, 845', 'M', 'thiago.lima@gmail.com'),
+('Viviane Cardoso', '40234567890', '1993-03-23', 'Rua Ceará, 957', 'F', 'viviane.cardoso@gmail.com');
