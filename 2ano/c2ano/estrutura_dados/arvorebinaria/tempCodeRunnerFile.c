@@ -63,48 +63,7 @@ int contarPares(No *raiz) {
     return cont + contarPares(raiz->esquerda) + contarPares(raiz->direita);
 }
 
-// Função para encontrar o menor valor em uma subárvore
-No *encontrarMenorNum(No *raiz) {
-    while (raiz->esquerda != NULL) {
-        raiz = raiz->esquerda;
-    }
-    return raiz;
-}
-
-No *remover(No *raiz, int chave) {
-    if (raiz == NULL) {
-        printf("Valor não encontrado.\n");
-        return NULL;
-    } 
-    
-    if (chave < raiz->conteudo) {
-        raiz->esquerda = remover(raiz->esquerda, chave);
-    } else if (chave > raiz->conteudo) {
-        raiz->direita = remover(raiz->direita, chave);
-    } else {
-        if (raiz->esquerda == NULL && raiz->direita == NULL) {
-            free(raiz);
-            printf("Elemento folha removido: %d\n", chave);
-            return NULL;
-        } else if (raiz->esquerda == NULL) {
-            No *temp = raiz->direita;
-            free(raiz);
-            printf("Elemento removido (um filho direita): %d\n", chave);
-            return temp;
-        } else if (raiz->direita == NULL) {
-            No *temp = raiz->esquerda;
-            free(raiz);
-            printf("Elemento removido (com um filho esquerda): %d\n", chave);
-            return temp;
-        } else {
-            No *temp = encontrarMenorNum(raiz->direita); //menor valor direita
-            raiz->conteudo = temp->conteudo;  // Substitui valor
-            raiz->direita = remover(raiz->direita, temp->conteudo);
-            printf("Elemento removido (com dois filhos): %d\n", chave);
-        }
-    }
-    return raiz;
-}
+No remover
 
 int main() {
     int opcao1, opcao2, valor;
@@ -112,7 +71,7 @@ int main() {
     arvore.raiz = NULL;
 
     do {
-        printf("\n0 - Sair\n1 - Inserir\n2 - Imprimir\n3 - Remover\n");
+        printf("\n0 - Sair\n1 - Inserir\n2 - Imprimir\n");
         scanf("%d", &opcao1);
 
         switch (opcao1) {
@@ -142,12 +101,6 @@ int main() {
 
                 printf("\nTamanho da árvore: %d\n", contarNos(arvore.raiz));
                 printf("Quantidade de números pares: %d\n", contarPares(arvore.raiz));
-                break;
-            
-            case 3:
-                printf("Informe o valor a ser removido: ");
-                scanf("%d", &valor);
-                arvore.raiz = remover(arvore.raiz, valor);
                 break;
 
             default:
