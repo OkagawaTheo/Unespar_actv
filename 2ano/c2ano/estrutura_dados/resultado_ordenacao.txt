@@ -1,0 +1,96 @@
+======== Testes de Algoritmos de Ordenacao ========
+
+Theo Okagawa Rodrigues - 2ºano CCOMP - 14.11.24
+Trabalho de Organização e Estrutura de Dados
+
+----------------------------------------------------------------------------------------
+
+
+
+
+- Bubble Sort: O Bubble Sort é um método básico de ordenação que funciona através da comparação contínua de pares de elementos consecutivos em uma lista. Se os elementos comparados estiverem fora de ordem, eles são trocados de posição. Com cada passada pela lista, o maior (ou menor) elemento vai se posicionando no final. Esse processo se repete até que todos os elementos estejam organizados, deixando de lado os elementos que já estão em sua posição final a cada nova iteração
+
+
+- Selection Sort: O Selection Sort é um método de ordenação que organiza uma lista buscando, a cada etapa, o elemento com o menor valor (ou o maior, conforme a ordem desejada) e colocando-o na posição correta. Para isso, ele percorre a lista para encontrar esse elemento e o troca com o item na posição inicial. Dessa forma, a lista vai sendo dividida em uma parte que já está em ordem e outra que ainda precisa ser organizada
+
+
+
+
+- Insertion Sort:   O Insertion Sort é um algoritmo de ordenação que organiza elementos em uma lista construindo progressivamente uma sequência ordenada. O objetivo é percorrer a lista da esquerda para a direita, selecionando cada elemento e inserindo-o na posição correta em relação aos elementos anteriores que já estão ordenados.
+
+
+
+
+
+----------------------------------------------------------------------------------------
+
+                   Tipo         Tamanho    Tempo (s)  Comparacoes    Movimentacoes
+----------------------------------------------------------------------------------------
+
+
+===== Algoritmo: Bubble Sort ==
+
+Tamanho: 100, : Aleatorio
+Bubble Sort        Aleatorio      100      0.000063        4950            2542
+Tamanho: 100, : Ordenado
+Bubble Sort        Ordenado       100      0.000030        4950            0
+Tamanho: 100, : Inverso
+Bubble Sort        Inverso        100      0.000063        4950            4950           
+Tamanho: 1000, : Aleatorio
+Bubble Sort        Aleatorio      1000     0.003949        499500          239239         
+Tamanho: 1000, : Ordenado
+Bubble Sort        Ordenado       1000     0.002918        499500          0
+Tamanho: 1000, : Inverso
+Bubble Sort        Inverso        1000     0.005385        499500          499500         
+Tamanho: 10000, : Aleatorio
+Bubble Sort        Aleatorio      10000    0.567210        49995000        24937858       
+Tamanho: 10000, : Ordenado
+Bubble Sort        Ordenado       10000    0.210758        49995000        0              
+Tamanho: 10000, : Inverso
+Bubble Sort        Inverso        10000    0.407408        49995000        49995000       
+
+
+===== Algoritmo: Selection Sort =====
+
+Tamanho: 100, : Aleatorio
+Selection Sort     Aleatorio      100      0.000025        4950            96             
+Tamanho: 100, : Ordenado
+Selection Sort     Ordenado       100      0.000019        4950            0              
+Tamanho: 100, : Inverso
+Selection Sort     Inverso        100      0.000022        4950            50             
+Tamanho: 1000, : Aleatorio
+Selection Sort     Aleatorio      1000     0.001823        499500          996            
+Tamanho: 1000, : Ordenado
+Selection Sort     Ordenado       1000     0.001730        499500          0              
+Tamanho: 1000, : Inverso
+Selection Sort     Inverso        1000     0.001818        499500          500            
+Tamanho: 10000, : Aleatorio
+Selection Sort     Aleatorio      10000    0.225953        49995000        9989           
+Tamanho: 10000,  Ordenado
+Selection Sort     Ordenado       10000    0.214077        49995000        0              
+Tamanho: 10000, : Inverso
+Selection Sort     Inverso        10000    0.182969        49995000        5000           
+
+
+===== Algoritmo: Insertion Sort =====
+
+Tamanho: 100, : Aleatorio
+Insertion Sort     Aleatorio      100      0.000012        2278            2377           
+Tamanho: 100, : Ordenado
+Insertion Sort     Ordenado       100      0.000002        0               99             
+Tamanho: 100, : Inverso
+Insertion Sort     Inverso        100      0.000023        4950            5049           
+Tamanho: 1000, : Aleatorio
+Insertion Sort     Aleatorio      1000     0.001086        250929          251928         
+Tamanho: 1000, : Ordenado
+Insertion Sort     Ordenado       1000     0.000006        0               999            
+Tamanho: 1000, : Inverso
+Insertion Sort     Inverso        1000     0.002214        499500          500499         
+Tamanho: 10000, : Aleatorio
+Insertion Sort     Aleatorio      10000    0.116999        24756434        24766433       
+Tamanho: 10000, : Ordenado
+Insertion Sort     Ordenado       10000    0.000059        0               9999           
+Tamanho: 10000, : Inverso
+Insertion Sort     Inverso        10000    0.255119        49995000        50004999       
+
+======== Fim dos Testes ========

@@ -10,7 +10,7 @@ void inicializarVetor(int vet[], int tam, int tipo) {
         else vet[i] = tam - i - 1;                       // Valores em ordem decrescente
     }
 }
-
+// algoritmo do por
 void bubbleSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 0; i < tam - 1; i++) {
         for (int j = 0; j < tam - i - 1; j++) {
@@ -24,7 +24,9 @@ void bubbleSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
         }
     }
 }
-
+// algoritmo que compara menor e maior e troca com o valor inicial
+// mais lerdo
+//"seleciona um valor e coloca no inicio"
 void selectionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 0; i < tam - 1; i++) {
         int min_idx = i;
@@ -43,7 +45,7 @@ void selectionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     }
 }
 
-// Função Insertion Sort
+// percorre da esqierda para a direita e colocando cala um na posição certa
 void insertionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 1; i < tam; i++) {
         int chave = vet[i];
@@ -60,7 +62,7 @@ void insertionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
 }
 
 // Função para medir e exibir o desempenho de cada algoritmo de ordenação
-void testarOrdenacao(void (*sortFunc)(int[], int, int*, int*), int tam, int tipo, const char *algoritmo, const char *tipoDescricao) {
+void testarOrdenacao(FILE *arquivo, void (*sortFunc)(int[], int, int*, int*), int tam, int tipo, const char *algoritmo, const char *tipoDescricao) {
     int *vet = (int *)malloc(tam * sizeof(int));
     inicializarVetor(vet, tam, tipo);
 
@@ -70,14 +72,9 @@ void testarOrdenacao(void (*sortFunc)(int[], int, int*, int*), int tam, int tipo
     clock_t fim = clock();
     double tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
-    printf("\n=============================================\n");
-    printf("Algoritmo: %s\nTipo de vetor: %s\n", algoritmo, tipoDescricao);
-    printf("Tamanho do vetor: %d\n", tam);
-    printf("---------------------------------------------\n");
-    printf("Tempo de execucao: %.6f segundos\n", tempo_execucao);
-    printf("Numero de comparacoes: %d\n", comparacoes);
-    printf("Numero de movimentacoes: %d\n", movimentacoes);
-    printf("=============================================\n\n");
+
+    fprintf(arquivo, "%-18s %-14s %-8d %-15.6f %-15d %-15d\n", 
+            algoritmo, tipoDescricao, tam, tempo_execucao, comparacoes, movimentacoes);
 
     free(vet);
 }
@@ -89,19 +86,49 @@ int main() {
     int numTamanhos = sizeof(tamanhos) / sizeof(tamanhos[0]);
     const char *tipos[] = {"Aleatorio", "Ordenado", "Inverso"};
 
-    printf("======== Testes de Algoritmos de Ordenacao ========\n\n");
+    FILE *arquivo = fopen("resultado_ordenacao.txt", "w");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo para escrita!\n");
+        return 1;
+    }
 
+ 
+    fprintf(arquivo, "======== Testes de Algoritmos de Ordenacao ========\n\n");
+    fprintf(arquivo, "Algoritmo          Tamanho  Tempo (s)     Comparacoes    Movimentacoes\n");
+    fprintf(arquivo, "------------------------------------------------------------\n");
+
+    fprintf(arquivo, "\n\n===== Algoritmo: Bubble Sort =====\n\n");
     for (int i = 0; i < numTamanhos; i++) {
         int tam = tamanhos[i];
         for (int tipo = 1; tipo <= 3; tipo++) {
-            printf("---------------\n");
-            printf("Tamanho: %d, Tipo de vetor: %s\n\n", tam, tipos[tipo - 1]);
-            
-            testarOrdenacao(bubbleSort, tam, tipo, "Bubble Sort", tipos[tipo - 1]);
-            testarOrdenacao(selectionSort, tam, tipo, "Selection Sort", tipos[tipo - 1]);
-            testarOrdenacao(insertionSort, tam, tipo, "Insertion Sort", tipos[tipo - 1]);
-            
-            printf("===============\n\n");
+            fprintf(arquivo, "Tamanho: %d, Tipo de vetor: %s\n", tam, tipos[tipo - 1]);
+            testarOrdenacao(arquivo, bubbleSort, tam, tipo, "Bubble Sort", tipos[tipo - 1]);
         }
     }
+
+
+    fprintf(arquivo, "\n\n===== Algoritmo: Selection Sort =====\n\n");
+    for (int i = 0; i < numTamanhos; i++) {
+        int tam = tamanhos[i];
+        for (int tipo = 1; tipo <= 3; tipo++) {
+            fprintf(arquivo, "Tamanho: %d, Tipo de vetor: %s\n", tam, tipos[tipo - 1]);
+            testarOrdenacao(arquivo, selectionSort, tam, tipo, "Selection Sort", tipos[tipo - 1]);
+        }
+    }
+
+
+    fprintf(arquivo, "\n\n===== Algoritmo: Insertion Sort =====\n\n");
+    for (int i = 0; i < numTamanhos; i++) {
+        int tam = tamanhos[i];
+        for (int tipo = 1; tipo <= 3; tipo++) {
+            fprintf(arquivo, "Tamanho: %d, Tipo de vetor: %s\n", tam, tipos[tipo - 1]);
+            testarOrdenacao(arquivo, insertionSort, tam, tipo, "Insertion Sort", tipos[tipo - 1]);
+        }
+    }
+
+    fprintf(arquivo, "\n======== Fim dos Testes ========\n");
+    fclose(arquivo);
+
+    printf("Resultados salvos no arquivo 'resultado_ordenacao.txt'\n");
+    return 0;
 }

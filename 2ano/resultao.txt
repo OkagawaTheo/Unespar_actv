@@ -1,0 +1,33 @@
+======== Testes de Algoritmos de Ordenacao ========
+
+| Algoritmo     | Tipo       | Tamanho  | Tempo (s)     | Comparacoes    | Movimentacoes    |
+|---------------|------------|----------|---------------|----------------|------------------|
+| Bubble Sort  | Aleatorio  | 100      | 0.000060     | 4950           | 2220            |
+| Selection Sort | Aleatorio  | 100      | 0.000026     | 4950           | 95              |
+| Insertion Sort | Aleatorio  | 100      | 0.000014     | 2393           | 2492            |
+| Bubble Sort  | Ordenado   | 100      | 0.000021     | 4950           | 0               |
+| Selection Sort | Ordenado   | 100      | 0.000019     | 4950           | 0               |
+| Insertion Sort | Ordenado   | 100      | 0.000002     | 0              | 99              |
+| Bubble Sort  | Inverso    | 100      | 0.000037     | 4950           | 4950            |
+| Selection Sort | Inverso    | 100      | 0.000022     | 4950           | 50              |
+| Insertion Sort | Inverso    | 100      | 0.000026     | 4950           | 5049            |
+| Bubble Sort  | Aleatorio  | 1000     | 0.003392     | 499500         | 248781          |
+| Selection Sort | Aleatorio  | 1000     | 0.002247     | 499500         | 991             |
+| Insertion Sort | Aleatorio  | 1000     | 0.001279     | 246399         | 247398          |
+| Bubble Sort  | Ordenado   | 1000     | 0.001975     | 499500         | 0               |
+| Selection Sort | Ordenado   | 1000     | 0.001896     | 499500         | 0               |
+| Insertion Sort | Ordenado   | 1000     | 0.000006     | 0              | 999             |
+| Bubble Sort  | Inverso    | 1000     | 0.003878     | 499500         | 499500          |
+| Selection Sort | Inverso    | 1000     | 0.001845     | 499500         | 500             |
+| Insertion Sort | Inverso    | 1000     | 0.002634     | 499500         | 500499          |
+| Bubble Sort  | Aleatorio  | 10000    | 0.484771     | 49995000       | 25020980        |
+| Selection Sort | Aleatorio  | 10000    | 0.172626     | 49995000       | 9989            |
+| Insertion Sort | Aleatorio  | 10000    | 0.117748     | 24946842       | 24956841        |
+| Bubble Sort  | Ordenado   | 10000    | 0.212607     | 49995000       | 0               |
+| Selection Sort | Ordenado   | 10000    | 0.209675     | 49995000       | 0               |
+| Insertion Sort | Ordenado   | 10000    | 0.000062     | 0              | 9999            |
+| Bubble Sort  | Inverso    | 10000    | 0.399499     | 49995000       | 49995000        |
+| Selection Sort | Inverso    | 10000    | 0.177204     | 49995000       | 5000            |
+| Insertion Sort | Inverso    | 10000    | 0.276938     | 49995000       | 50004999        |
+
+======== Fim dos Testes ========
