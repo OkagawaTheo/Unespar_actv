@@ -5,12 +5,12 @@
 // Função para gerar um vetor com valores baseados no tipo escolhido
 void inicializarVetor(int vet[], int tam, int tipo) {
     for (int i = 0; i < tam; i++) {
-        if (tipo == 1) vet[i] = rand() % 10000;          // Valores aleatórios
-        else if (tipo == 2) vet[i] = i;                  // Valores em ordem crescente
-        else vet[i] = tam - i - 1;                       // Valores em ordem decrescente
+        if (tipo == 1) vet[i] = rand() % 10000;          // valores aleatorios
+        else if (tipo == 2) vet[i] = i;                  // valores em ordem crescente
+        else vet[i] = tam - i - 1;                       // valores em ordem decrescente
     }
 }
-// algoritmo do por
+// algoritmo do par
 void bubbleSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 0; i < tam - 1; i++) {
         for (int j = 0; j < tam - i - 1; j++) {
@@ -27,6 +27,7 @@ void bubbleSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
 // algoritmo que compara menor e maior e troca com o valor inicial
 // mais lerdo
 //"seleciona um valor e coloca no inicio"
+// metade ordenado metade nao
 void selectionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 0; i < tam - 1; i++) {
         int min_idx = i;
@@ -46,6 +47,7 @@ void selectionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
 }
 
 // percorre da esqierda para a direita e colocando cala um na posição certa
+// eficiencia em menores vetores
 void insertionSort(int vet[], int tam, int *comparacoes, int *movimentacoes) {
     for (int i = 1; i < tam; i++) {
         int chave = vet[i];
