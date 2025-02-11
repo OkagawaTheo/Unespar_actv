@@ -27,7 +27,7 @@ void addAresta(Grafo* grafo,int origem, int destino){ //direcionado
     novoNode->prox = grafo->listaAdj[origem]; //add prox lig na origem
     grafo->listaAdj[origem] = novoNode;
 } 
-
+// colocar em .h pra extender
 
 void BuscaLargura(Grafo* grafo,int inicio){
     int fila[100];
@@ -54,6 +54,30 @@ void BuscaLargura(Grafo* grafo,int inicio){
     printf("\n");
 }
 
+void BuscaProfundidade(Grafo* grafo,int inicio){
+    int pilha[100], topo = -1, visitado[100] = {0};
+    pilha[++topo] = inicio;
+    visitado[inicio] = 1;
+
+     printf("Busca em profundidade a partir da origem: ");
+    while (topo >= 0) {
+        int atual = pilha[topo--];
+        printf("%d ", atual);
+
+        node* temp = grafo->listaAdj[atual];
+        while (temp != NULL) {
+            int adjacente = temp->valor;
+            if (!visitado[adjacente]) {
+                visitado[adjacente] = 1; // Marca como visitado
+                pilha[++topo] = adjacente; // Adiciona à pilha
+            }
+            temp = temp->prox;
+        }
+    }
+    printf("\n");
+    
+}
+
 int main(){
 
     Grafo* grafo = criarGrafo(5); //3 vertices
@@ -62,4 +86,5 @@ int main(){
     addAresta(grafo,2,3);
     addAresta(grafo,2,4);
     BuscaLargura(grafo,0);
+    BuscaProfundidade(grafo,0);
 }
