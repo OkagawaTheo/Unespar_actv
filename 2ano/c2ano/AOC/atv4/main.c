@@ -103,7 +103,7 @@ void SelecionarInstrucao(bool *sair, int fitaMemoria[], int *memoriaTotal) {
         case 'l':
             printf("Liberando memoria...\n");
             break;
-        case 'i':
+        case 'i':branch
             printf("Inserindo memoria...\n");
             PrimeiroAjuste(fitaMemoria, memoriaTotal);
             break;

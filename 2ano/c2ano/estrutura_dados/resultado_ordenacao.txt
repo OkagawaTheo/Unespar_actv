@@ -13,11 +13,12 @@ Trabalho de Organização e Estrutura de Dados
 
 - Selection Sort: O Selection Sort é um método de ordenação que organiza uma lista buscando, a cada etapa, o elemento com o menor valor (ou o maior, conforme a ordem desejada) e colocando-o na posição correta. Para isso, ele percorre a lista para encontrar esse elemento e o troca com o item na posição inicial. Dessa forma, a lista vai sendo dividida em uma parte que já está em ordem e outra que ainda precisa ser organizada
 
+ - separa em dois
 
 
 
 - Insertion Sort:   O Insertion Sort é um algoritmo de ordenação que organiza elementos em uma lista construindo progressivamente uma sequência ordenada. O objetivo é percorrer a lista da esquerda para a direita, selecionando cada elemento e inserindo-o na posição correta em relação aos elementos anteriores que já estão ordenados.
-
+ - insere em relação aos ja organizados
 
 
 
@@ -94,3 +95,8 @@ Tamanho: 10000, : Inverso
 Insertion Sort     Inverso        10000    0.255119        49995000        50004999       
 
 ======== Fim dos Testes ========
+
+- Conclusão
+
+O código realiza um estudo comparativo entre os algoritmos de ordenação Bubble Sort, Selection Sort e Insertion Sort, analisando seu desempenho em diferentes tamanhos de vetores (100, 1.000 e 10.000) e configurações iniciais (aleatório, ordenado e inversamente ordenado).
+Os resultados incluem medições de tempo de execução, número de comparações e movimentações, que são armazenados em um arquivo para análise posterior. A avaliação confirma que os tipos de algoritmos são ineficazes para grandes volumes de dados, mas se destacam em situações didáticas ou específicas. Entre eles, o Insertion Sort apresenta melhor desempenho em vetores pequenos ou quase ordenados, enquanto o Bubble Sort e o Selection Sort demonstram maior lentidão, especialmente em cenários desfavoráveis.
