@@ -68,8 +68,8 @@ void BuscaProfundidade(Grafo* grafo,int inicio){
         while (temp != NULL) {
             int adjacente = temp->valor;
             if (!visitado[adjacente]) {
-                visitado[adjacente] = 1; // Marca como visitado
-                pilha[++topo] = adjacente; // Adiciona à pilha
+                visitado[adjacente] = 1; // visitado
+                pilha[++topo] = adjacente; //add pilha
             }
             temp = temp->prox;
         }

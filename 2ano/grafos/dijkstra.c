@@ -6,7 +6,7 @@
 
 typedef struct Node {
     int valor;
-    int peso;
+    int peso; // a mais no dijkstra
     struct Node* prox;
 } node;
 
