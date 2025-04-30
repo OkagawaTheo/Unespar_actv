@@ -86,10 +86,10 @@ vector<string> readFile(const string& filename){
         throw runtime_error("Erro ao abrir o arquivo "+ filename);
     }
     string line;
-    vector<string> vector_lines;
+    vector<string> vector_lines; //
 
     while(getline(file,line)){ // le linha por linha
-        vector_lines.push_back(line); // add no vetor
+        vector_lines.push_back(line); // add no vetor as linhas do txt
     }
 
     file.close();
