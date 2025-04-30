@@ -80,7 +80,6 @@ unordered_map<string,TokenType> palavraReservada = {
 
 
 vector<string> readFile(const string& filename){
-
     ifstream file(filename);
     
     if (!file.is_open()){
@@ -89,8 +88,8 @@ vector<string> readFile(const string& filename){
     string line;
     vector<string> vector_lines;
 
-    while(getline(file,line)){
-        vector_lines.push_back(line);
+    while(getline(file,line)){ // le linha por linha
+        vector_lines.push_back(line); // add no vetor
     }
 
     file.close();
@@ -99,5 +98,9 @@ vector<string> readFile(const string& filename){
 
 
 int main(){
-  
+    vector<string> lines = readFile("input.txt");
+    int numero_linha = 1;
+    for(const string& linha : lines){
+        cout << "Linha: " << numero_linha++ << ": " << linha <<endl;
+    }
 }
