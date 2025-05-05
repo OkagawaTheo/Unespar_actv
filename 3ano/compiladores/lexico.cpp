@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <cctype.h>
 using namespace std;
 
 
@@ -96,6 +97,41 @@ vector<string> readFile(const string& filename){
     return vector_lines;
 }
 
+
+vector<string> Lexical(const vector<string>& lines){
+    vector<Token> tokens;
+   
+   int line_number = 1;
+
+   for(const string& line : lines){
+    int i = 0;
+    int column = 1;
+
+    for(char c : line){
+        if (isspace(c)){
+            column++; //column registra posicao do c na linha
+            i++;
+            continue;
+        }
+
+        if (isalpha(c)){
+            string lexema(1,c);
+            int start_col = column;
+            i++;
+            column++;
+            
+        }
+
+
+
+
+
+
+    }
+
+   }
+
+}
 
 int main(){
     vector<string> lines = readFile("input.txt");
