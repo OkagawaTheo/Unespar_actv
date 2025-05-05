@@ -8,7 +8,7 @@ Trabalho de Organização e Estrutura de Dados
 
 
 
-- Bubble Sort: O Bubble Sort é um método básico de ordenação que funciona através da comparação contínua de pares de elementos consecutivos em uma lista. Se os elementos comparados estiverem fora de ordem, eles são trocados de posição. Com cada passada pela lista, o maior (ou menor) elemento vai se posicionando no final. Esse processo se repete até que todos os elementos estejam organizados, deixando de lado os elementos que já estão em sua posição final a cada nova iteração
+- Bubble Sort: O Bubble Sort é um método básico de ordenação que funciona através da comparação contínua de pares de elementos consecutivos em uma lista. Se os elementos comparados estiverem fora de ordem, eles sfileão trocados de posição. Com cada passada pela lista, o maior (ou menor) elemento vai se posicionando no final. Esse processo se repete até que todos os elementos estejam organizados, deixando de lado os elementos que já estão em sua posição final a cada nova iteração
 
 
 - Selection Sort: O Selection Sort é um método de ordenação que organiza uma lista buscando, a cada etapa, o elemento com o menor valor (ou o maior, conforme a ordem desejada) e colocando-o na posição correta. Para isso, ele percorre a lista para encontrar esse elemento e o troca com o item na posição inicial. Dessa forma, a lista vai sendo dividida em uma parte que já está em ordem e outra que ainda precisa ser organizada
@@ -28,6 +28,11 @@ Trabalho de Organização e Estrutura de Dados
                    Tipo         Tamanho    Tempo (s)  Comparacoes    Movimentacoes
 ----------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------
+
+
+===== Algoritmo: Bubble Sort ==
+
 
 ===== Algoritmo: Bubble Sort ==
 
@@ -36,7 +41,7 @@ Bubble Sort        Aleatorio      100      0.000063        4950            2542
 Tamanho: 100, : Ordenado
 Bubble Sort        Ordenado       100      0.000030        4950            0
 Tamanho: 100, : Inverso
-Bubble Sort        Inverso        100      0.000063        4950            4950           
+Bubble Sort        Inverso        100      0.000063        4950            4950          
 Tamanho: 1000, : Aleatorio
 Bubble Sort        Aleatorio      1000     0.003949        499500          239239         
 Tamanho: 1000, : Ordenado
@@ -71,7 +76,7 @@ Tamanho: 10000,  Ordenado
 Selection Sort     Ordenado       10000    0.214077        49995000        0              
 Tamanho: 10000, : Inverso
 Selection Sort     Inverso        10000    0.182969        49995000        5000           
-
+file
 
 ===== Algoritmo: Insertion Sort =====
 
@@ -99,4 +104,4 @@ Insertion Sort     Inverso        10000    0.255119        49995000        50004
 - Conclusão
 
 O código realiza um estudo comparativo entre os algoritmos de ordenação Bubble Sort, Selection Sort e Insertion Sort, analisando seu desempenho em diferentes tamanhos de vetores (100, 1.000 e 10.000) e configurações iniciais (aleatório, ordenado e inversamente ordenado).
-Os resultados incluem medições de tempo de execução, número de comparações e movimentações, que são armazenados em um arquivo para análise posterior. A avaliação confirma que os tipos de algoritmos são ineficazes para grandes volumes de dados, mas se destacam em situações didáticas ou específicas. Entre eles, o Insertion Sort apresenta melhor desempenho em vetores pequenos ou quase ordenados, enquanto o Bubble Sort e o Selection Sort demonstram maior lentidão, especialmente em cenários desfavoráveis.
+Os resultados incluem medições de tempo de execução, número de comparações e movimentações, que são armazenados em um arquivo para análise posterior. A avaliação confirma que os tipos de algoritmos são ineficazes para grandes volumes de dados, mas se destacam em situações didáticas ou específicas. Entre eles, o Insertion Sort apresenta melhor desempenho em vetores pequenos ou quase ordenados, enquanto o Bubble Sort e o Selection Sort demonstram maior lentidão, especialmente em cenários desfavoráveis.file
