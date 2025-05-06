@@ -124,12 +124,55 @@ vector<Token> Lexical(const vector<string>& lines) {
                 tokens.push_back(token);
                 continue;
             }
+
+            if (isdigit(c)) {
+                string lexema;
+                
+                // inteiro
+                while (i < line.size() && isdigit(line[i])) {
+                    lexema += line[i];
+                    i++;
+                    column++;
+                }
+            
+                // real
+                if (i < line.size() && line[i] == '.') {
+                    lexema += line[i]; // add .
+                    i++;
+                    column++;
+            
+                    // decimal
+                    if (i < line.size() && isdigit(line[i])) {
+                        while (i < line.size() && isdigit(line[i])) {
+                            lexema += line[i];
+                            i++;
+                            column++;
+                        }
+                    }
+                }
+            
+                token.lexema = lexema;
+                token.type = NUMBER;
+                tokens.push_back(token);
+                continue;
+            }
+            
+                    
+                   
+
+
+
+                
+                
+            }
+
+
+
             i++;
             column++;
         }
 
         line_number++;
-    }
 
     return tokens;
 }
