@@ -6,39 +6,33 @@
 #include <cctype>
 using namespace std;
 
-
-enum TokenType{
+enum TokenType {
     PROGRAM, READ, WRITE, INTEGER, BOOLEAN, DOUBLE,
     FUNCTION, PROCEDURE, BEGIN_, END_,
     AND, ARRAY, CASE, CONST, DIV, DO, DOWNTO, ELSE_, FILE_, FOR,
     GOTO, IF_, IN, LABEL, MOD, NIL, NOT_, OF, OR, PACKED,
     RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, WITH, VAR, WHILE_,
     IDENTIFIER, NUMBER, SYMBOL, END_OF_FILE,
-
-     // Operadores básicos
-     OP_ASSIGN,  // :=
-     OP_EQ,      // =
-     OP_PLUS,    // +
-     OP_MINUS,   // -
-     
-     // Delimitadores
-     SEMICOLON,  // ;
-     COMMA,      // ,
-     LPAREN,     // (
-     RPAREN,     // )
-     
+    OP_ASSIGN,  // :=
+    OP_EQ,      // =
+    OP_PLUS,    // +
+    OP_MINUS,   // -
+    SEMICOLON,  // ;
+    COMMA,      // ,
+    LPAREN,     // (
+    RPAREN      // )
 };
 
-struct Token{
+struct Token {
     TokenType type;
     string lexema;
     int line;
     int column;
 };
 
-unordered_map<string,TokenType> palavraReservada = {
+unordered_map<string, TokenType> palavraReservada = {
     {"program", PROGRAM},
-    {"read", READ},edt 
+    {"read", READ},
     {"write", WRITE},
     {"integer", INTEGER},
     {"boolean", BOOLEAN},
@@ -79,80 +73,74 @@ unordered_map<string,TokenType> palavraReservada = {
     {"while", WHILE_}
 };
 
-
-vector<string> readFile(const string& filename){
+vector<string> readFile(const string& filename) {
     ifstream file(filename);
-    
-    if (!file.is_open()){
-        throw runtime_error("Erro ao abrir o arquivo "+ filename);
-    }
-    string line;
-    vector<string> vector_lines; //
 
-    while(getline(file,line)){ // le linha por linha
-        vector_lines.push_back(line); // add no vetor as linhas do txt
+    if (!file.is_open()) {
+        throw runtime_error("Erro ao abrir o arquivo " + filename);
+    }
+
+    vector<string> vector_lines;
+    string line;
+
+    while (getline(file, line)) {
+        vector_lines.push_back(line);
     }
 
     file.close();
     return vector_lines;
 }
 
-// dps se der tempo modularizar cada checagem pra descentralizar a func do lexical
-vector<string> Lexical(const vector<string>& lines){ 
+vector<Token> Lexical(const vector<string>& lines) {
     vector<Token> tokens;
     int line_number = 1;
 
-    for(const string& line : lines){
+    for (const string& line : lines) {
         int i = 0;
         int column = 1;
 
-        while (i < line.size()){
+        while (i < line.size()) {
             char c = line[i];
 
-            for(char c : line){
-                if (std::isspace(c)){
-                    column++; //column registra posicao do c na linha
-                    i++;
-                    continue;
+            if (isspace(c)) {
+                i++;
+                column++;
+                continue;
             }
 
             Token token;
             token.line = line_number;
             token.column = column;
 
-            if (isalpha(c)){
+            if (isalpha(c)) {
                 string lexema;
-                while (i<line.size() && (isalnum(line[i] || line[i] == '_'))){
+                while (i < line.size() && (isalnum(line[i]) || line[i] == '_')) {
                     lexema += line[i];
                     i++;
                     column++;
                 }
                 token.lexema = lexema;
-                token.type = palavraReservada.count(lexema) ? palavraReservada[lexema] : IDENTIFIER; //checagem de PR ou identificador
+                token.type = palavraReservada.count(lexema) ? palavraReservada[lexema] : IDENTIFIER;
                 tokens.push_back(token);
                 continue;
-
             }
-
-                                    
-                    
-                
-            }
-    
-            
-        }
+            i++;
+            column++;
         }
 
-        
+        line_number++;
+    }
 
-   }
-
+    return tokens;
 }
 
-int main(){
+int main() {
     vector<string> lines = readFile("input.txt");
-    int numero_linha = 1;
-    for(const string& linha : lines){
-        cout << "Linha: " << numero_linha++ << ": " << linha <<endl;
+    vector<Token> tokens = Lexical(lines);
+
+    for (const Token& token : tokens) {
+        cout << "Token: " << token.lexema << " (Linha " << token.line << ", Coluna " << token.column << ")\n"; // falta o type
     }
+
+    return 0;
 }
