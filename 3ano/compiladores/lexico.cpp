@@ -38,7 +38,7 @@ struct Token{
 
 unordered_map<string,TokenType> palavraReservada = {
     {"program", PROGRAM},
-    {"read", READ},
+    {"read", READ},edt 
     {"write", WRITE},
     {"integer", INTEGER},
     {"boolean", BOOLEAN},
@@ -97,8 +97,8 @@ vector<string> readFile(const string& filename){
     return vector_lines;
 }
 
-
-vector<string> Lexical(const vector<string>& lines){
+// dps se der tempo modularizar cada checagem pra descentralizar a func do lexical
+vector<string> Lexical(const vector<string>& lines){ 
     vector<Token> tokens;
     int line_number = 1;
 
@@ -106,27 +106,44 @@ vector<string> Lexical(const vector<string>& lines){
         int i = 0;
         int column = 1;
 
-        for(char c : line){
-            if (std::isspace(c)){
-                column++; //column registra posicao do c na linha
-                i++;
+        while (i < line.size()){
+            char c = line[i];
+
+            for(char c : line){
+                if (std::isspace(c)){
+                    column++; //column registra posicao do c na linha
+                    i++;
+                    continue;
+            }
+
+            Token token;
+            token.line = line_number;
+            token.column = column;
+
+            if (isalpha(c)){
+                string lexema;
+                while (i<line.size() && (isalnum(line[i] || line[i] == '_'))){
+                    lexema += line[i];
+                    i++;
+                    column++;
+                }
+                token.lexema = lexema;
+                token.type = palavraReservada.count(lexema) ? palavraReservada[lexema] : IDENTIFIER; //checagem de PR ou identificador
+                tokens.push_back(token);
                 continue;
+
+            }
+
+                                    
+                    
+                
+            }
+    
+            
+        }
         }
 
-        if (std::isalpha(c)){
-            string lexema(1,c); //cria uma variavel que se expande
-            int start_col = column;
-            i++;
-            column++;
-
-        }
-
-
-
-
-
-
-    }
+        
 
    }
 
