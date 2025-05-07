@@ -1,64 +1,64 @@
-Token: program | Tipo: PROGRAM (Linha 1, Coluna 1)
-Token: Exemplo | Tipo: IDENTIFIER (Linha 1, Coluna 9)
-Token: ; | Tipo: SEMICOLON (Linha 1, Coluna 16)
-Token: var | Tipo: VAR (Linha 2, Coluna 1)
-Token: m | Tipo: IDENTIFIER (Linha 2, Coluna 5)
-Token: , | Tipo: COMMA (Linha 2, Coluna 6)
-Token: y | Tipo: IDENTIFIER (Linha 2, Coluna 8)
-Token: , | Tipo: COMMA (Linha 2, Coluna 9)
-Token: teste | Tipo: IDENTIFIER (Linha 2, Coluna 11)
-Token: : | Tipo: OP_COLON (Linha 2, Coluna 16)
-Token: integer | Tipo: INTEGER (Linha 2, Coluna 18)
-Token: ; | Tipo: SEMICOLON (Linha 2, Coluna 25)
-Token: function | Tipo: FUNCTION (Linha 4, Coluna 5)
-Token: fatorial | Tipo: IDENTIFIER (Linha 4, Coluna 14)
-Token: ( | Tipo: LPAREN (Linha 4, Coluna 22)
-Token: n | Tipo: IDENTIFIER (Linha 4, Coluna 23)
-Token: : | Tipo: OP_COLON (Linha 4, Coluna 24)
-Token: integer | Tipo: INTEGER (Linha 4, Coluna 26)
-Token: ) | Tipo: RPAREN (Linha 4, Coluna 33)
-Token: : | Tipo: OP_COLON (Linha 4, Coluna 34)
-Token: integer | Tipo: INTEGER (Linha 4, Coluna 36)
-Token: ; | Tipo: SEMICOLON (Linha 4, Coluna 43)
-Token: begin | Tipo: BEGIN (Linha 5, Coluna 5)
-Token: if | Tipo: IF (Linha 6, Coluna 9)
-Token: ( | Tipo: LPAREN (Linha 6, Coluna 12)
-Token: n | Tipo: IDENTIFIER (Linha 6, Coluna 13)
-Token: < | Tipo: SYMBOL (Linha 6, Coluna 14)
-Token: 1 | Tipo: NUMBER (Linha 6, Coluna 15)
-Token: ) | Tipo: RPAREN (Linha 6, Coluna 16)
-Token: then | Tipo: THEN (Linha 6, Coluna 18)
-Token: fatorial | Tipo: IDENTIFIER (Linha 6, Coluna 23)
-Token: := | Tipo: OP_ASSIGN (Linha 6, Coluna 32)
-Token: 1 | Tipo: NUMBER (Linha 6, Coluna 35)
-Token: else | Tipo: ELSE (Linha 7, Coluna 9)
-Token: fatorial | Tipo: IDENTIFIER (Linha 7, Coluna 14)
-Token: >= | Tipo: OP_GE (Linha 7, Coluna 23)
-Token: n | Tipo: IDENTIFIER (Linha 7, Coluna 26)
-Token: * | Tipo: OP_MULT (Linha 7, Coluna 28)
-Token: fatorial | Tipo: IDENTIFIER (Linha 7, Coluna 30)
-Token: ( | Tipo: LPAREN (Linha 7, Coluna 38)
-Token: n | Tipo: IDENTIFIER (Linha 7, Coluna 39)
-Token: - | Tipo: OP_MINUS (Linha 7, Coluna 40)
-Token: 1 | Tipo: NUMBER (Linha 7, Coluna 41)
-Token: ) | Tipo: RPAREN (Linha 7, Coluna 42)
-Token: end | Tipo: END (Linha 8, Coluna 9)
-Token: ; | Tipo: SEMICOLON (Linha 8, Coluna 12)
-Token: begin | Tipo: BEGIN (Linha 10, Coluna 1)
-Token: read | Tipo: READ (Linha 11, Coluna 9)
-Token: ( | Tipo: LPAREN (Linha 11, Coluna 13)
-Token: teste | Tipo: IDENTIFIER (Linha 11, Coluna 14)
-Token: ) | Tipo: RPAREN (Linha 11, Coluna 19)
-Token: ; | Tipo: SEMICOLON (Linha 11, Coluna 20)
-Token: write | Tipo: WRITE (Linha 12, Coluna 9)
-Token: ( | Tipo: LPAREN (Linha 12, Coluna 14)
-Token: fatorial | Tipo: IDENTIFIER (Linha 12, Coluna 15)
-Token: ( | Tipo: LPAREN (Linha 12, Coluna 23)
-Token: teste | Tipo: IDENTIFIER (Linha 12, Coluna 24)
-Token: ) | Tipo: RPAREN (Linha 12, Coluna 29)
-Token: ) | Tipo: RPAREN (Linha 12, Coluna 30)
-Token: teste1234 | Tipo: IDENTIFIER (Linha 13, Coluna 9)
-Token: ; | Tipo: SEMICOLON (Linha 13, Coluna 18)
-Token: ; | Tipo: SEMICOLON (Linha 13, Coluna 37)
-Token: end | Tipo: END (Linha 14, Coluna 1)
-Token: . | Tipo: DOT (Linha 14, Coluna 4)
+Lexema: "program" || Tipo: "palavra reservada"
+Lexema: "Exemplo" || Tipo: "identificador"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "var" || Tipo: "palavra reservada"
+Lexema: "m" || Tipo: "identificador"
+Lexema: "," || Tipo: "símbolo simples"
+Lexema: "y" || Tipo: "identificador"
+Lexema: "," || Tipo: "símbolo simples"
+Lexema: "teste" || Tipo: "identificador"
+Lexema: ":" || Tipo: "símbolo simples"
+Lexema: "integer" || Tipo: "palavra reservada"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "function" || Tipo: "palavra reservada"
+Lexema: "fatorial" || Tipo: "identificador"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "n" || Tipo: "identificador"
+Lexema: ":" || Tipo: "símbolo simples"
+Lexema: "integer" || Tipo: "palavra reservada"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: ":" || Tipo: "símbolo simples"
+Lexema: "integer" || Tipo: "palavra reservada"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "begin" || Tipo: "palavra reservada"
+Lexema: "if" || Tipo: "palavra reservada"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "n" || Tipo: "identificador"
+Lexema: "<" || Tipo: "símbolo simples"
+Lexema: "1" || Tipo: "número"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: "then" || Tipo: "palavra reservada"
+Lexema: "fatorial" || Tipo: "identificador"
+Lexema: ":=" || Tipo: "símbolo composto"
+Lexema: "1" || Tipo: "número"
+Lexema: "else" || Tipo: "palavra reservada"
+Lexema: "fatorial" || Tipo: "identificador"
+Lexema: ">=" || Tipo: "símbolo composto"
+Lexema: "n" || Tipo: "identificador"
+Lexema: "*" || Tipo: "símbolo simples"
+Lexema: "fatorial" || Tipo: "identificador"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "n" || Tipo: "identificador"
+Lexema: "-" || Tipo: "símbolo simples"
+Lexema: "1" || Tipo: "número"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: "end" || Tipo: "palavra reservada"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "begin" || Tipo: "palavra reservada"
+Lexema: "read" || Tipo: "palavra reservada"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "teste" || Tipo: "identificador"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "write" || Tipo: "palavra reservada"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "fatorial" || Tipo: "identificador"
+Lexema: "(" || Tipo: "símbolo simples"
+Lexema: "teste" || Tipo: "identificador"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: ")" || Tipo: "símbolo simples"
+Lexema: "teste1234" || Tipo: "identificador"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: ";" || Tipo: "símbolo simples"
+Lexema: "end" || Tipo: "palavra reservada"
+Lexema: "." || Tipo: "símbolo simples"

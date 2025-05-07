@@ -85,76 +85,22 @@ vector<string> readFile(const string& filename) {
     return vector_lines;
 }
 
-
-string tokenTypeToString(TokenType type) {
-    switch (type) {
-        case PROGRAM: return "PROGRAM";
-        case READ: return "READ";
-        case WRITE: return "WRITE";
-        case INTEGER: return "INTEGER";
-        case BOOLEAN: return "BOOLEAN";
-        case DOUBLE: return "DOUBLE";
-        case FUNCTION: return "FUNCTION";
-        case PROCEDURE: return "PROCEDURE";
-        case BEGIN_: return "BEGIN";
-        case END_: return "END";
-        case AND: return "AND";
-        case ARRAY: return "ARRAY";
-        case CASE: return "CASE";
-        case CONST: return "CONST";
-        case DIV: return "DIV";
-        case DO: return "DO";
-        case DOWNTO: return "DOWNTO";
-        case ELSE_: return "ELSE";
-        case FILE_: return "FILE";
-        case FOR: return "FOR";
-        case GOTO: return "GOTO";
-        case IF_: return "IF";
-        case IN: return "IN";
-        case LABEL: return "LABEL";
-        case MOD: return "MOD";
-        case NIL: return "NIL";
-        case NOT_: return "NOT";
-        case OF: return "OF";
-        case OR: return "OR";
-        case PACKED: return "PACKED";
-        case RECORD: return "RECORD";
-        case REPEAT: return "REPEAT";
-        case SET: return "SET";
-        case THEN: return "THEN";
-        case TO: return "TO";
-        case TYPE: return "TYPE";
-        case UNTIL: return "UNTIL";
-        case WITH: return "WITH";
-        case VAR: return "VAR";
-        case WHILE_: return "WHILE";
-        case IDENTIFIER: return "IDENTIFIER";
-        case NUMBER: return "NUMBER";
-        case SYMBOL: return "SYMBOL";
-        case END_OF_FILE: return "END_OF_FILE";
-        case OP_ASSIGN: return "OP_ASSIGN";
-        case OP_EQ: return "OP_EQ";
-        case OP_PLUS: return "OP_PLUS";
-        case OP_MINUS: return "OP_MINUS";
-        case OP_MULT: return "OP_MULT";
-        case OP_DIV: return "OP_DIV";
-        case OP_INC: return "OP_INC";
-        case OP_DEC: return "OP_DEC";
-        case OP_NE: return "OP_NE";
-        case OP_GE: return "OP_GE";
-        case OP_LE: return "OP_LE";
-        case OP_EXP: return "OP_EXP";
-        case SEMICOLON: return "SEMICOLON";
-        case COMMA: return "COMMA";
-        case LPAREN: return "LPAREN";
-        case RPAREN: return "RPAREN";
-        case LBRACKET: return "LBRACKET";
-        case RBRACKET: return "RBRACKET";
-        case LBRACE: return "LBRACE";
-        case RBRACE: return "RBRACE";
-        case DOT: return "DOT";
-        case OP_COLON: return "OP_COLON";
-        default: return "UNKNOWN";
+string getSimplifiedTokenType(TokenType type) {
+    if (type >= PROGRAM && type <= WHILE_) {
+        return "palavra reservada";
+    }
+    else if (type == IDENTIFIER) {
+        return "identificador";
+    }
+    else if (type == NUMBER) {
+        return "número";
+    }
+    else if (type == OP_ASSIGN || type == OP_NE || type == OP_GE || 
+             type == OP_LE || type == OP_INC || type == OP_DEC) {
+        return "símbolo composto";
+    }
+    else {
+        return "símbolo simples";
     }
 }
 
@@ -174,7 +120,6 @@ vector<Token> Lexical(const vector<string>& lines) {
                 column++;
                 continue;
             }
-
             
             if (c == '{') {
                 while (i < line.size() && line[i] != '}') {
@@ -186,7 +131,6 @@ vector<Token> Lexical(const vector<string>& lines) {
                 }
                 continue;
             }
-
             
             if (c == '(' && i + 1 < line.size() && line[i + 1] == '*') {
                 i += 2; column += 2;
@@ -292,7 +236,6 @@ vector<Token> Lexical(const vector<string>& lines) {
                 }
             }
 
-            // Operadores de um caractere
             switch (c) {
                 case '+': token.type = OP_PLUS; token.lexema = "+"; break;
                 case '-': token.type = OP_MINUS; token.lexema = "-"; break;
@@ -336,15 +279,12 @@ int main() {
     ofstream output("output.txt");
 
     for (const Token& token : tokens) {
-        string info = "Token: " + token.lexema +
-                      " | Tipo: " + tokenTypeToString(token.type) +
-                      " (Linha " + to_string(token.line) +
-                      ", Coluna " + to_string(token.column) + ")\n";
-
-        
+        string simplifiedType = getSimplifiedTokenType(token.type);
+        string info = "Lexema: \"" + token.lexema + "\" || Tipo: \"" + simplifiedType + "\"\n";
         output << info;
     }
-    cout << "output salvo no arquivo output.txt";
-
+    
+    cout << "Output salvo no arquivo output.txt\n";
     output.close();
+    return 0;
 }
