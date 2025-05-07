@@ -46,46 +46,15 @@ struct Token {
 };
 
 unordered_map<string, TokenType> palavraReservada = {
-    {"program", PROGRAM},
-    {"read", READ},
-    {"write", WRITE},
-    {"integer", INTEGER},
-    {"boolean", BOOLEAN},
-    {"double", DOUBLE},
-    {"function", FUNCTION},
-    {"procedure", PROCEDURE},
-    {"begin", BEGIN_},
-    {"end", END_},
-    {"and", AND},
-    {"array", ARRAY},
-    {"case", CASE},
-    {"const", CONST},
-    {"div", DIV},
-    {"do", DO},
-    {"downto", DOWNTO},
-    {"else", ELSE_},
-    {"file", FILE_},
-    {"for", FOR},
-    {"goto", GOTO},
-    {"if", IF_},
-    {"in", IN},
-    {"label", LABEL},
-    {"mod", MOD},
-    {"nil", NIL},
-    {"not", NOT_},
-    {"of", OF},
-    {"or", OR},
-    {"packed", PACKED},
-    {"record", RECORD},
-    {"repeat", REPEAT},
-    {"set", SET},
-    {"then", THEN},
-    {"to", TO},
-    {"type", TYPE},
-    {"until", UNTIL},
-    {"with", WITH},
-    {"var", VAR},
-    {"while", WHILE_}
+    {"program", PROGRAM}, {"read", READ}, {"write", WRITE}, {"integer", INTEGER},
+    {"boolean", BOOLEAN}, {"double", DOUBLE}, {"function", FUNCTION}, {"procedure", PROCEDURE},
+    {"begin", BEGIN_}, {"end", END_}, {"and", AND}, {"array", ARRAY}, {"case", CASE},
+    {"const", CONST}, {"div", DIV}, {"do", DO}, {"downto", DOWNTO}, {"else", ELSE_},
+    {"file", FILE_}, {"for", FOR}, {"goto", GOTO}, {"if", IF_}, {"in", IN},
+    {"label", LABEL}, {"mod", MOD}, {"nil", NIL}, {"not", NOT_}, {"of", OF},
+    {"or", OR}, {"packed", PACKED}, {"record", RECORD}, {"repeat", REPEAT}, {"set", SET},
+    {"then", THEN}, {"to", TO}, {"type", TYPE}, {"until", UNTIL}, {"with", WITH},
+    {"var", VAR}, {"while", WHILE_}
 };
 
 vector<string> readFile(const string& filename) {
@@ -118,8 +87,40 @@ string tokenTypeToString(TokenType type) {
         case PROCEDURE: return "PROCEDURE";
         case BEGIN_: return "BEGIN";
         case END_: return "END";
+        case AND: return "AND";
+        case ARRAY: return "ARRAY";
+        case CASE: return "CASE";
+        case CONST: return "CONST";
+        case DIV: return "DIV";
+        case DO: return "DO";
+        case DOWNTO: return "DOWNTO";
+        case ELSE_: return "ELSE";
+        case FILE_: return "FILE";
+        case FOR: return "FOR";
+        case GOTO: return "GOTO";
+        case IF_: return "IF";
+        case IN: return "IN";
+        case LABEL: return "LABEL";
+        case MOD: return "MOD";
+        case NIL: return "NIL";
+        case NOT_: return "NOT";
+        case OF: return "OF";
+        case OR: return "OR";
+        case PACKED: return "PACKED";
+        case RECORD: return "RECORD";
+        case REPEAT: return "REPEAT";
+        case SET: return "SET";
+        case THEN: return "THEN";
+        case TO: return "TO";
+        case TYPE: return "TYPE";
+        case UNTIL: return "UNTIL";
+        case WITH: return "WITH";
+        case VAR: return "VAR";
+        case WHILE_: return "WHILE";
         case IDENTIFIER: return "IDENTIFIER";
         case NUMBER: return "NUMBER";
+        case SYMBOL: return "SYMBOL";
+        case END_OF_FILE: return "END_OF_FILE";
         case OP_ASSIGN: return "OP_ASSIGN";
         case OP_EQ: return "OP_EQ";
         case OP_PLUS: return "OP_PLUS";
@@ -182,40 +183,29 @@ vector<Token> Lexical(const vector<string>& lines) {
 
             if (isdigit(c)) {
                 string lexema;
-                
-                // inteiro
                 while (i < line.size() && isdigit(line[i])) {
                     lexema += line[i];
                     i++;
                     column++;
                 }
-            
-                // real
                 if (i < line.size() && line[i] == '.') {
-                    lexema += line[i]; // add .
-                    i++;
+                    lexema += line[i++];
                     column++;
-            
-                    // decimal
-                    if (i < line.size() && isdigit(line[i])) {
-                        while (i < line.size() && isdigit(line[i])) {
-                            lexema += line[i];
-                            i++;
-                            column++;
-                        }
+                    while (i < line.size() && isdigit(line[i])) {
+                        lexema += line[i];
+                        i++;
+                        column++;
                     }
                 }
-            
                 token.lexema = lexema;
                 token.type = NUMBER;
                 tokens.push_back(token);
                 continue;
             }
 
-            // Verificação de símbolos compostos
             if (i + 1 < line.size()) {
                 string two_char = string(1, c) + line[i+1];
-                
+
                 if (two_char == ":=") {
                     token.type = OP_ASSIGN;
                     token.lexema = two_char;
@@ -224,7 +214,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                     tokens.push_back(token);
                     continue;
                 }
-                else if (two_char == "<>") {
+                if (two_char == "<>") {
                     token.type = OP_NE;
                     token.lexema = two_char;
                     i += 2;
@@ -232,7 +222,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                     tokens.push_back(token);
                     continue;
                 }
-                else if (two_char == "<=") {
+                if (two_char == "<=") {
                     token.type = OP_LE;
                     token.lexema = two_char;
                     i += 2;
@@ -240,7 +230,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                     tokens.push_back(token);
                     continue;
                 }
-                else if (two_char == ">=") {
+                if (two_char == ">=") {
                     token.type = OP_GE;
                     token.lexema = two_char;
                     i += 2;
@@ -248,7 +238,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                     tokens.push_back(token);
                     continue;
                 }
-                else if (two_char == "++") {
+                if (two_char == "++") {
                     token.type = OP_INC;
                     token.lexema = two_char;
                     i += 2;
@@ -256,7 +246,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                     tokens.push_back(token);
                     continue;
                 }
-                else if (two_char == "--") {
+                if (two_char == "--") {
                     token.type = OP_DEC;
                     token.lexema = two_char;
                     i += 2;
@@ -266,7 +256,6 @@ vector<Token> Lexical(const vector<string>& lines) {
                 }
             }
 
-            // Símbolos simples
             switch(c) {
                 case '+': token.type = OP_PLUS; token.lexema = "+"; break;
                 case '-': token.type = OP_MINUS; token.lexema = "-"; break;
@@ -286,12 +275,12 @@ vector<Token> Lexical(const vector<string>& lines) {
                 case ':': token.type = OP_COLON; token.lexema = ":"; break;
                 case '<': token.type = SYMBOL; token.lexema = "<"; break;
                 case '>': token.type = SYMBOL; token.lexema = ">"; break;
-                default: 
-                    token.type = SYMBOL; 
+                default:
+                    token.type = SYMBOL;
                     token.lexema = string(1, c);
                     break;
             }
-            
+
             tokens.push_back(token);
             i++;
             column++;
@@ -307,9 +296,18 @@ int main() {
     vector<string> lines = readFile("input.txt");
     vector<Token> tokens = Lexical(lines);
 
+    ofstream output("output.txt");
+
     for (const Token& token : tokens) {
-        cout << "Token: " << token.lexema
-             << " | Tipo: " << tokenTypeToString(token.type)
-             << " (Linha " << token.line << ", Coluna " << token.column << ")\n";
+        string info = "Token: " + token.lexema +
+                      " | Tipo: " + tokenTypeToString(token.type) +
+                      " (Linha " + to_string(token.line) +
+                      ", Coluna " + to_string(token.column) + ")\n";
+
+        
+        output << info;
     }
+    cout << "output salvo no arquivo output.txt";
+
+    output.close();
 }
