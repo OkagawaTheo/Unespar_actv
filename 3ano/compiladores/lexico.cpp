@@ -17,15 +17,24 @@ enum TokenType {
     OP_EQ,      // =
     OP_PLUS,    // +
     OP_MINUS,   // -
+    OP_MULT,    // *
+    OP_DIV,     // /
     OP_INC,     // ++
     OP_DEC,     // --
     OP_NE,      // <>
     OP_GE,      // >=
     OP_LE,      // <=
+    OP_EXP,     // ^
     SEMICOLON,  // ;
     COMMA,      // ,
     LPAREN,     // (
     RPAREN,     // )
+    LBRACKET,   // [
+    RBRACKET,   // ]
+    LBRACE,     // {
+    RBRACE,     // }
+    DOT,        // .
+    OP_COLON    // :
 };
 
 struct Token {
@@ -115,15 +124,24 @@ string tokenTypeToString(TokenType type) {
         case OP_EQ: return "OP_EQ";
         case OP_PLUS: return "OP_PLUS";
         case OP_MINUS: return "OP_MINUS";
+        case OP_MULT: return "OP_MULT";
+        case OP_DIV: return "OP_DIV";
         case OP_INC: return "OP_INC";
         case OP_DEC: return "OP_DEC";
         case OP_NE: return "OP_NE";
         case OP_GE: return "OP_GE";
         case OP_LE: return "OP_LE";
+        case OP_EXP: return "OP_EXP";
         case SEMICOLON: return "SEMICOLON";
         case COMMA: return "COMMA";
         case LPAREN: return "LPAREN";
         case RPAREN: return "RPAREN";
+        case LBRACKET: return "LBRACKET";
+        case RBRACKET: return "RBRACKET";
+        case LBRACE: return "LBRACE";
+        case RBRACE: return "RBRACE";
+        case DOT: return "DOT";
+        case OP_COLON: return "OP_COLON";
         default: return "UNKNOWN";
     }
 }
@@ -194,7 +212,7 @@ vector<Token> Lexical(const vector<string>& lines) {
                 continue;
             }
 
-            // símbolos compostos
+            // Verificação de símbolos compostos
             if (i + 1 < line.size()) {
                 string two_char = string(1, c) + line[i+1];
                 
@@ -252,15 +270,22 @@ vector<Token> Lexical(const vector<string>& lines) {
             switch(c) {
                 case '+': token.type = OP_PLUS; token.lexema = "+"; break;
                 case '-': token.type = OP_MINUS; token.lexema = "-"; break;
+                case '*': token.type = OP_MULT; token.lexema = "*"; break;
+                case '/': token.type = OP_DIV; token.lexema = "/"; break;
+                case '^': token.type = OP_EXP; token.lexema = "^"; break;
                 case '=': token.type = OP_EQ; token.lexema = "="; break;
                 case ';': token.type = SEMICOLON; token.lexema = ";"; break;
                 case ',': token.type = COMMA; token.lexema = ","; break;
                 case '(': token.type = LPAREN; token.lexema = "("; break;
                 case ')': token.type = RPAREN; token.lexema = ")"; break;
+                case '[': token.type = LBRACKET; token.lexema = "["; break;
+                case ']': token.type = RBRACKET; token.lexema = "]"; break;
+                case '{': token.type = LBRACE; token.lexema = "{"; break;
+                case '}': token.type = RBRACE; token.lexema = "}"; break;
+                case '.': token.type = DOT; token.lexema = "."; break;
+                case ':': token.type = OP_COLON; token.lexema = ":"; break;
                 case '<': token.type = SYMBOL; token.lexema = "<"; break;
                 case '>': token.type = SYMBOL; token.lexema = ">"; break;
-                case ':': token.type = SYMBOL; token.lexema = ":"; break;
-                case '.': token.type = SYMBOL; token.lexema = "."; break;
                 default: 
                     token.type = SYMBOL; 
                     token.lexema = string(1, c);
