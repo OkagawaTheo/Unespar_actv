@@ -10,5 +10,5 @@ var m, y, teste: integer;
 begin
         read(teste);
         write(fatorial(teste))
-        teste1234;
+        teste1234; {comentario zica}; (*outro comentario zica*)
 end.

@@ -175,6 +175,31 @@ vector<Token> Lexical(const vector<string>& lines) {
                 continue;
             }
 
+            
+            if (c == '{') {
+                while (i < line.size() && line[i] != '}') {
+                    i++;
+                    column++;
+                }
+                if (i < line.size()) {
+                    i++; column++;  
+                }
+                continue;
+            }
+
+            
+            if (c == '(' && i + 1 < line.size() && line[i + 1] == '*') {
+                i += 2; column += 2;
+                while (i + 1 < line.size() && !(line[i] == '*' && line[i + 1] == ')')) {
+                    i++;
+                    column++;
+                }
+                if (i + 1 < line.size()) {
+                    i += 2; column += 2; 
+                }
+                continue;
+            }
+
             Token token;
             token.line = line_number;
             token.column = column;
@@ -215,7 +240,7 @@ vector<Token> Lexical(const vector<string>& lines) {
             }
 
             if (i + 1 < line.size()) {
-                string two_char = string(1, c) + line[i+1];
+                string two_char = string(1, c) + line[i + 1];
 
                 if (two_char == ":=") {
                     token.type = OP_ASSIGN;
@@ -267,7 +292,8 @@ vector<Token> Lexical(const vector<string>& lines) {
                 }
             }
 
-            switch(c) {
+            // Operadores de um caractere
+            switch (c) {
                 case '+': token.type = OP_PLUS; token.lexema = "+"; break;
                 case '-': token.type = OP_MINUS; token.lexema = "-"; break;
                 case '*': token.type = OP_MULT; token.lexema = "*"; break;
