@@ -64,6 +64,16 @@ vector<string> readFile(const string& filename) {
         throw runtime_error("Erro ao abrir o arquivo " + filename);
     }
 
+    string firstWord;
+    file >> firstWord;
+
+    if (firstWord != "program") {
+        throw runtime_error("Arquivo deve começar com 'program'");
+    }
+
+    file.clear();
+    file.seekg(0);
+
     vector<string> vector_lines;
     string line;
 
@@ -74,6 +84,7 @@ vector<string> readFile(const string& filename) {
     file.close();
     return vector_lines;
 }
+
 
 string tokenTypeToString(TokenType type) {
     switch (type) {
