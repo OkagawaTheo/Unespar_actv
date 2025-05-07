@@ -28,6 +28,7 @@ struct Token {
     string lexema;
     int line;
     int column;
+    bool isReserved = false;
 };
 
 unordered_map<string, TokenType> palavraReservada = {
@@ -90,6 +91,35 @@ vector<string> readFile(const string& filename) {
     file.close();
     return vector_lines;
 }
+
+string tokenTypeToString(TokenType type) {
+    switch (type) {
+        case PROGRAM: return "PROGRAM";
+        case READ: return "READ";
+        case WRITE: return "WRITE";
+        case INTEGER: return "INTEGER";
+        case BOOLEAN: return "BOOLEAN";
+        case DOUBLE: return "DOUBLE";
+        case FUNCTION: return "FUNCTION";
+        case PROCEDURE: return "PROCEDURE";
+        case BEGIN_: return "BEGIN";
+        case END_: return "END";
+        case IDENTIFIER: return "IDENTIFIER";
+        case NUMBER: return "NUMBER";
+        case OP_ASSIGN: return "OP_ASSIGN";
+        case OP_EQ: return "OP_EQ";
+        case OP_PLUS: return "OP_PLUS";
+        case OP_MINUS: return "OP_MINUS";
+        case SEMICOLON: return "SEMICOLON";
+        case COMMA: return "COMMA";
+        case LPAREN: return "LPAREN";
+        case RPAREN: return "RPAREN";
+        default: return "UNKNOWN";
+    }
+}
+
+
+
 
 vector<Token> Lexical(const vector<string>& lines) {
     vector<Token> tokens;
@@ -156,8 +186,16 @@ vector<Token> Lexical(const vector<string>& lines) {
                 tokens.push_back(token);
                 continue;
             }
+
+            // simbolos
+            switch(c){
+                case '+': token.type = OP_PLUS;token.lexema = "+";break;
+                case '-': token.type = OP_MINUS;token.lexema = "-";break;
+                case ':': token.type = OP_EQ;token.lexema = ":";break;
+                case
+            }
             
-                    
+                
                    
 
 
