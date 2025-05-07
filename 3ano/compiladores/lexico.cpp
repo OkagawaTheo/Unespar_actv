@@ -17,10 +17,15 @@ enum TokenType {
     OP_EQ,      // =
     OP_PLUS,    // +
     OP_MINUS,   // -
+    OP_INC,     // ++
+    OP_DEC,     // --
+    OP_NE,      // <>
+    OP_GE,      // >=
+    OP_LE,      // <=
     SEMICOLON,  // ;
     COMMA,      // ,
     LPAREN,     // (
-    RPAREN      // )
+    RPAREN,     // )
 };
 
 struct Token {
@@ -110,6 +115,11 @@ string tokenTypeToString(TokenType type) {
         case OP_EQ: return "OP_EQ";
         case OP_PLUS: return "OP_PLUS";
         case OP_MINUS: return "OP_MINUS";
+        case OP_INC: return "OP_INC";
+        case OP_DEC: return "OP_DEC";
+        case OP_NE: return "OP_NE";
+        case OP_GE: return "OP_GE";
+        case OP_LE: return "OP_LE";
         case SEMICOLON: return "SEMICOLON";
         case COMMA: return "COMMA";
         case LPAREN: return "LPAREN";
@@ -117,9 +127,6 @@ string tokenTypeToString(TokenType type) {
         default: return "UNKNOWN";
     }
 }
-
-
-
 
 vector<Token> Lexical(const vector<string>& lines) {
     vector<Token> tokens;
@@ -187,30 +194,86 @@ vector<Token> Lexical(const vector<string>& lines) {
                 continue;
             }
 
-            // simbolos
-            switch(c){
-                case '+': token.type = OP_PLUS;token.lexema = "+";break;
-                case '-': token.type = OP_MINUS;token.lexema = "-";break;
-                case ':': token.type = OP_EQ;token.lexema = ":";break;
-                case
+            // símbolos compostos
+            if (i + 1 < line.size()) {
+                string two_char = string(1, c) + line[i+1];
+                
+                if (two_char == ":=") {
+                    token.type = OP_ASSIGN;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+                else if (two_char == "<>") {
+                    token.type = OP_NE;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+                else if (two_char == "<=") {
+                    token.type = OP_LE;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+                else if (two_char == ">=") {
+                    token.type = OP_GE;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+                else if (two_char == "++") {
+                    token.type = OP_INC;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+                else if (two_char == "--") {
+                    token.type = OP_DEC;
+                    token.lexema = two_char;
+                    i += 2;
+                    column += 2;
+                    tokens.push_back(token);
+                    continue;
+                }
+            }
+
+            // Símbolos simples
+            switch(c) {
+                case '+': token.type = OP_PLUS; token.lexema = "+"; break;
+                case '-': token.type = OP_MINUS; token.lexema = "-"; break;
+                case '=': token.type = OP_EQ; token.lexema = "="; break;
+                case ';': token.type = SEMICOLON; token.lexema = ";"; break;
+                case ',': token.type = COMMA; token.lexema = ","; break;
+                case '(': token.type = LPAREN; token.lexema = "("; break;
+                case ')': token.type = RPAREN; token.lexema = ")"; break;
+                case '<': token.type = SYMBOL; token.lexema = "<"; break;
+                case '>': token.type = SYMBOL; token.lexema = ">"; break;
+                case ':': token.type = SYMBOL; token.lexema = ":"; break;
+                case '.': token.type = SYMBOL; token.lexema = "."; break;
+                default: 
+                    token.type = SYMBOL; 
+                    token.lexema = string(1, c);
+                    break;
             }
             
-                
-                   
-
-
-
-                
-                
-            }
-
-
-
+            tokens.push_back(token);
             i++;
             column++;
         }
 
         line_number++;
+    }
 
     return tokens;
 }
@@ -220,8 +283,8 @@ int main() {
     vector<Token> tokens = Lexical(lines);
 
     for (const Token& token : tokens) {
-        cout << "Token: " << token.lexema << " (Linha " << token.line << ", Coluna " << token.column << ")\n"; // falta o type
+        cout << "Token: " << token.lexema
+             << " | Tipo: " << tokenTypeToString(token.type)
+             << " (Linha " << token.line << ", Coluna " << token.column << ")\n";
     }
-
-    return 0;
 }
