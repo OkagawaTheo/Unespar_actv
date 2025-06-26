@@ -1,145 +1,97 @@
+//lexico.cpp
+#include "common_types.h" // Inclui as definições comuns de TokenType e Token
 #include <iostream>
 #include <unordered_map>
 #include <fstream>
 #include <vector>
 #include <string>
-#include <cctype>
-using namespace std;
+#include <cctype> // Para isalpha, isdigit
 
-enum TokenType {
-    PROGRAM, READ, WRITE, INTEGER, BOOLEAN, DOUBLE,
-    FUNCTION, PROCEDURE, BEGIN_, END_,
-    AND, ARRAY, CASE, CONST, DIV, DO, DOWNTO, ELSE_, FILE_, FOR,
-    GOTO, IF_, IN, LABEL, MOD, NIL, NOT_, OF, OR, PACKED,
-    RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, WITH, VAR, WHILE_,
-    IDENTIFIER, NUMBER, SYMBOL, END_OF_FILE,
-    OP_ASSIGN,  // :=
-    OP_EQ,      // =
-    OP_PLUS,    // +
-    OP_MINUS,   // -
-    OP_MULT,    // *
-    OP_DIV,     // /
-    OP_INC,     // ++
-    OP_DEC,     // --
-    OP_NE,      // <>
-    OP_GE,      // >=
-    OP_LE,      // <=
-    OP_EXP,     // ^
-    SEMICOLON,  // ;
-    COMMA,      // ,
-    LPAREN,     // (
-    RPAREN,     // )
-    LBRACKET,   // [
-    RBRACKET,   // ]
-    LBRACE,     // {
-    RBRACE,     // }
-    DOT,        // .
-    OP_COLON    // :
+// Mapa de palavras reservadas (usado para classificar identificadores)
+std::unordered_map<std::string, TokenType> palavraReservada = {
+    {"program", PROGRAM_KW}, {"read", READ_KW}, {"write", WRITE_KW}, {"integer", INTEGER_TYPE_KW},
+    {"boolean", BOOLEAN_TYPE_KW}, {"double", DOUBLE_TYPE_KW}, {"function", FUNCTION_KW}, {"procedure", PROCEDURE_KW},
+    {"begin", BEGIN_KW}, {"end", END_KW}, {"and", AND_OP}, {"array", ARRAY_KW}, {"case", CASE_KW},
+    {"const", CONST_KW}, {"div", DIV_OP}, {"do", DO_KW}, {"downto", DOWNTO_KW}, {"else", ELSE_KW},
+    {"file", FILE_KW}, {"for", FOR_KW}, {"goto", GOTO_KW}, {"if", IF_KW}, {"in", IN_KW},
+    {"label", LABEL_KW}, {"mod", MOD_OP}, {"nil", NIL_KW}, {"not", NOT_OP}, {"of", OF_KW},
+    {"or", OR_OP}, {"packed", PACKED_KW}, {"record", RECORD_KW}, {"repeat", REPEAT_KW}, {"set", SET_KW},
+    {"then", THEN_KW}, {"to", TO_KW}, {"type", TYPE_KW}, {"until", UNTIL_KW}, {"with", WITH_KW},
+    {"var", VAR_KW}, {"while", WHILE_KW}
 };
 
-struct Token {
-    TokenType type;
-    string lexema;
-    int line;
-    int column;
-    bool isReserved = false;
-};
-
-unordered_map<string, TokenType> palavraReservada = {
-    {"program", PROGRAM}, {"read", READ}, {"write", WRITE}, {"integer", INTEGER},
-    {"boolean", BOOLEAN}, {"double", DOUBLE}, {"function", FUNCTION}, {"procedure", PROCEDURE},
-    {"begin", BEGIN_}, {"end", END_}, {"and", AND}, {"array", ARRAY}, {"case", CASE},
-    {"const", CONST}, {"div", DIV}, {"do", DO}, {"downto", DOWNTO}, {"else", ELSE_},
-    {"file", FILE_}, {"for", FOR}, {"goto", GOTO}, {"if", IF_}, {"in", IN},
-    {"label", LABEL}, {"mod", MOD}, {"nil", NIL}, {"not", NOT_}, {"of", OF},
-    {"or", OR}, {"packed", PACKED}, {"record", RECORD}, {"repeat", REPEAT}, {"set", SET},
-    {"then", THEN}, {"to", TO}, {"type", TYPE}, {"until", UNTIL}, {"with", WITH},
-    {"var", VAR}, {"while", WHILE_}
-};
-
-vector<string> readFile(const string& filename) {
-    ifstream file(filename);
-
-    if (!file.is_open()) {
-        throw runtime_error("Erro ao abrir o arquivo " + filename);
-    }
-
-    string firstWord;
-    file >> firstWord;
-
-    if (firstWord != "program") {
-        throw runtime_error("Arquivo deve começar com 'program'");
-    }
-
-    file.clear();
-    file.seekg(0);
-
-    vector<string> vector_lines;
-    string line;
-
-    while (getline(file, line)) {
-        vector_lines.push_back(line);
-    }
-
-    file.close();
-    return vector_lines;
+// Função auxiliar para classificar lexemas de símbolos, alinhado com o TokenType
+TokenType getSymbolTokenType(const std::string& lexema) {
+    if (lexema == ":=") return ASSIGN_OP;
+    if (lexema == "=") return EQUAL_OP;
+    if (lexema == "+") return PLUS_OP;
+    if (lexema == "-") return MINUS_OP;
+    if (lexema == "*") return MULTIPLY_OP;
+    if (lexema == "/") return DIVIDE_OP;
+    if (lexema == "++") return INCREMENT_OP;
+    if (lexema == "--") return DECREMENT_OP;
+    if (lexema == "<>") return NOT_EQUAL_OP;
+    if (lexema == ">=") return GREATER_EQUAL_OP;
+    if (lexema == "<=") return LESS_EQUAL_OP;
+    if (lexema == "^") return EXPONENT_OP;
+    if (lexema == ";") return SEMICOLON_CHAR;
+    if (lexema == ",") return COMMA_CHAR;
+    if (lexema == "(") return LPAREN_CHAR;
+    if (lexema == ")") return RPAREN_CHAR;
+    if (lexema == "[") return LBRACKET_CHAR;
+    if (lexema == "]") return RBRACKET_CHAR;
+    if (lexema == "{") return LBRACE_CHAR;
+    if (lexema == "}") return RBRACE_CHAR;
+    if (lexema == ".") return DOT_CHAR;
+    if (lexema == ":") return COLON_CHAR;
+    if (lexema == "<") return LESS_OP;
+    if (lexema == ">") return GREATER_OP;
+    return GENERIC_SYMBOL_TOKEN; // Para outros símbolos não mapeados explicitamente.
 }
 
-string getSimplifiedTokenType(TokenType type) {
-    if (type >= PROGRAM && type <= WHILE_) {
-        return "palavra reservada";
-    }
-    else if (type == IDENTIFIER) {
-        return "identificador";
-    }
-    else if (type == NUMBER) {
-        return "número";
-    }
-    else if (type == OP_ASSIGN || type == OP_NE || type == OP_GE || 
-             type == OP_LE || type == OP_INC || type == OP_DEC) {
-        return "símbolo composto";
-    }
-    else {
-        return "símbolo simples";
-    }
-}
 
-vector<Token> Lexical(const vector<string>& lines) {
-    vector<Token> tokens;
+// Função Lexical agora retorna um vetor de tokens
+std::vector<Token> Lexical(const std::vector<std::string>& lines) {
+    std::vector<Token> tokens;
     int line_number = 1;
 
-    for (const string& line : lines) {
+    for (const std::string& line : lines) {
         int i = 0;
         int column = 1;
 
-        while (i < line.size()) {
+        while (i < (int)line.size()) {
             char c = line[i];
 
-            if (isspace(c)) {
+            if (std::isspace(c)) {
                 i++;
                 column++;
                 continue;
             }
             
+            // Tratamento de comentários { ... }
             if (c == '{') {
-                while (i < line.size() && line[i] != '}') {
+                while (i < (int)line.size() && line[i] != '}') {
                     i++;
                     column++;
                 }
-                if (i < line.size()) {
-                    i++; column++;  
+                if (i < (int)line.size()) { // Consome '}'
+                    i++; 
+                    column++;  
                 }
                 continue;
             }
             
-            if (c == '(' && i + 1 < line.size() && line[i + 1] == '*') {
-                i += 2; column += 2;
-                while (i + 1 < line.size() && !(line[i] == '*' && line[i + 1] == ')')) {
+            // Tratamento de comentários (* ... *)
+            if (c == '(' && i + 1 < (int)line.size() && line[i + 1] == '*') {
+                i += 2; 
+                column += 2;
+                while (i + 1 < (int)line.size() && !(line[i] == '*' && line[i + 1] == ')')) {
                     i++;
                     column++;
                 }
-                if (i + 1 < line.size()) {
-                    i += 2; column += 2; 
+                if (i + 1 < (int)line.size()) { // Consome '*)'
+                    i += 2; 
+                    column += 2; 
                 }
                 continue;
             }
@@ -148,87 +100,54 @@ vector<Token> Lexical(const vector<string>& lines) {
             token.line = line_number;
             token.column = column;
 
-            if (isalpha(c)) {
-                string lexema;
-                while (i < line.size() && (isalnum(line[i]) || line[i] == '_')) {
+            // Identificadores e Palavras Reservadas
+            if (std::isalpha(c)) {
+                std::string lexema;
+                while (i < (int)line.size() && (std::isalnum(line[i]) || line[i] == '_')) {
                     lexema += line[i];
                     i++;
                     column++;
                 }
                 token.lexema = lexema;
-                token.type = palavraReservada.count(lexema) ? palavraReservada[lexema] : IDENTIFIER;
+                if (palavraReservada.count(lexema)) {
+                    token.type = palavraReservada[lexema];
+                } else {
+                    token.type = IDENTIFIER_TOKEN;
+                }
                 tokens.push_back(token);
                 continue;
             }
 
-            if (isdigit(c)) {
-                string lexema;
-                while (i < line.size() && isdigit(line[i])) {
+            // Números (inteiros e com ponto flutuante)
+            if (std::isdigit(c)) {
+                std::string lexema;
+                while (i < (int)line.size() && std::isdigit(line[i])) {
                     lexema += line[i];
                     i++;
                     column++;
                 }
-                if (i < line.size() && line[i] == '.') {
+                if (i < (int)line.size() && line[i] == '.') {
                     lexema += line[i++];
                     column++;
-                    while (i < line.size() && isdigit(line[i])) {
+                    while (i < (int)line.size() && std::isdigit(line[i])) {
                         lexema += line[i];
                         i++;
                         column++;
                     }
                 }
                 token.lexema = lexema;
-                token.type = NUMBER;
+                token.type = NUMBER_TOKEN;
                 tokens.push_back(token);
                 continue;
             }
 
-            if (i + 1 < line.size()) {
-                string two_char = string(1, c) + line[i + 1];
-
-                if (two_char == ":=") {
-                    token.type = OP_ASSIGN;
-                    token.lexema = two_char;
-                    i += 2;
-                    column += 2;
-                    tokens.push_back(token);
-                    continue;
-                }
-                if (two_char == "<>") {
-                    token.type = OP_NE;
-                    token.lexema = two_char;
-                    i += 2;
-                    column += 2;
-                    tokens.push_back(token);
-                    continue;
-                }
-                if (two_char == "<=") {
-                    token.type = OP_LE;
-                    token.lexema = two_char;
-                    i += 2;
-                    column += 2;
-                    tokens.push_back(token);
-                    continue;
-                }
-                if (two_char == ">=") {
-                    token.type = OP_GE;
-                    token.lexema = two_char;
-                    i += 2;
-                    column += 2;
-                    tokens.push_back(token);
-                    continue;
-                }
-                if (two_char == "++") {
-                    token.type = OP_INC;
-                    token.lexema = two_char;
-                    i += 2;
-                    column += 2;
-                    tokens.push_back(token);
-                    continue;
-                }
-                if (two_char == "--") {
-                    token.type = OP_DEC;
-                    token.lexema = two_char;
+            // Operadores Compostos (2 caracteres)
+            if (i + 1 < (int)line.size()) {
+                std::string two_char_op = std::string(1, c) + line[i + 1];
+                TokenType op_type = getSymbolTokenType(two_char_op);
+                if (op_type != GENERIC_SYMBOL_TOKEN) { // Se é um operador composto conhecido
+                    token.type = op_type;
+                    token.lexema = two_char_op;
                     i += 2;
                     column += 2;
                     tokens.push_back(token);
@@ -236,55 +155,68 @@ vector<Token> Lexical(const vector<string>& lines) {
                 }
             }
 
-            switch (c) {
-                case '+': token.type = OP_PLUS; token.lexema = "+"; break;
-                case '-': token.type = OP_MINUS; token.lexema = "-"; break;
-                case '*': token.type = OP_MULT; token.lexema = "*"; break;
-                case '/': token.type = OP_DIV; token.lexema = "/"; break;
-                case '^': token.type = OP_EXP; token.lexema = "^"; break;
-                case '=': token.type = OP_EQ; token.lexema = "="; break;
-                case ';': token.type = SEMICOLON; token.lexema = ";"; break;
-                case ',': token.type = COMMA; token.lexema = ","; break;
-                case '(': token.type = LPAREN; token.lexema = "("; break;
-                case ')': token.type = RPAREN; token.lexema = ")"; break;
-                case '[': token.type = LBRACKET; token.lexema = "["; break;
-                case ']': token.type = RBRACKET; token.lexema = "]"; break;
-                case '{': token.type = LBRACE; token.lexema = "{"; break;
-                case '}': token.type = RBRACE; token.lexema = "}"; break;
-                case '.': token.type = DOT; token.lexema = "."; break;
-                case ':': token.type = OP_COLON; token.lexema = ":"; break;
-                case '<': token.type = SYMBOL; token.lexema = "<"; break;
-                case '>': token.type = SYMBOL; token.lexema = ">"; break;
-                default:
-                    token.type = SYMBOL;
-                    token.lexema = string(1, c);
-                    break;
+            // Operadores e Símbolos Simples (1 caractere)
+            TokenType simple_op_type = getSymbolTokenType(std::string(1, c));
+            if (simple_op_type != GENERIC_SYMBOL_TOKEN) { // Se é um operador simples conhecido
+                token.type = simple_op_type;
+                token.lexema = std::string(1, c);
+                i++;
+                column++;
+                tokens.push_back(token);
+                continue;
             }
 
+            // Se chegou aqui, é um caractere não reconhecido
+            // Pode ser um erro ou um símbolo genérico.
+            // Para simplificação, tratamos como GENERIC_SYMBOL_TOKEN.
+            token.type = GENERIC_SYMBOL_TOKEN;
+            token.lexema = std::string(1, c);
             tokens.push_back(token);
             i++;
             column++;
         }
-
         line_number++;
     }
-
+    // Adiciona um token de FIM_DE_ARQUIVO no final da lista.
+    tokens.push_back({END_OF_FILE_TOKEN, "EOF", line_number, 1});
     return tokens;
 }
 
+// A função main pode ser mantida para testar o léxico isoladamente
 int main() {
-    vector<string> lines = readFile("input.txt");
-    vector<Token> tokens = Lexical(lines);
+    using namespace std;
 
-    ofstream output("output.txt");
+    // Função readFile para ler o input.txt (copiada do lexico.cpp original)
+    // Se você já tem essa função em um arquivo separado, pode incluí-la.
+    // Aqui, ela está incluída para autonomia deste arquivo de teste.
+    auto readFile = [](const string& filename) {
+        ifstream file(filename);
+        if (!file.is_open()) {
+            throw runtime_error("Erro ao abrir o arquivo " + filename);
+        }
+        vector<string> vector_lines;
+        string line;
+        while (getline(file, line)) {
+            vector_lines.push_back(line);
+        }
+        file.close();
+        return vector_lines;
+    };
 
-    for (const Token& token : tokens) {
-        string simplifiedType = getSimplifiedTokenType(token.type);
-        string info = "Lexema: \"" + token.lexema + "\" || Tipo: \"" + simplifiedType + "\"\n";
-        output << info;
+    try {
+        vector<string> lines = readFile("input.txt");
+        vector<Token> tokens_result = Lexical(lines);
+
+        // Opcional: imprimir os tokens para o console para verificar
+        // Isso simula o output.txt, mas não o cria como arquivo.
+        cout << "Tokens gerados pelo lexico:\n";
+        for (const Token& token : tokens_result) {
+            cout << "Lexema: \"" << token.lexema << "\" || Tipo: " << token.type 
+                 << " || Linha: " << token.line << " || Coluna: " << token.column << "\n";
+        }
+    } catch (const runtime_error& e) {
+        cerr << "Erro no lexico: " << e.what() << "\n";
+        return 1;
     }
-    
-    cout << "Output salvo no arquivo output.txt\n";
-    output.close();
     return 0;
 }

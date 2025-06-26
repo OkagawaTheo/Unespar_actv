@@ -1,7 +1,6 @@
 Lexema: "program" || Tipo: "palavra reservada"
 Lexema: "Exemplo" || Tipo: "identificador"
-Lexema: ";" || Tipo: "símbolo simples"
-Lexema: "var" || Tipo: "palavra reservada"  
+Lexema: "var" || Tipo: "palavra reservada"
 Lexema: "m" || Tipo: "identificador"
 Lexema: "," || Tipo: "símbolo simples"
 Lexema: "y" || Tipo: "identificador"
