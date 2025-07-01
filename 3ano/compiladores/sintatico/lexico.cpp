@@ -274,6 +274,7 @@ vector<Token> Lexical(const vector<string>& lines) {
 
 int main() {
     vector<string> lines = readFile("input.txt");
+    
     vector<Token> tokens = Lexical(lines);
 
     ofstream output("output.txt");

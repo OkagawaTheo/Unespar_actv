@@ -6,7 +6,6 @@ var m, y, teste: integer;
         if (n<1) then fatorial := 1
         else fatorial >= n * fatorial(n-1)
         end;
-
 begin
         read(teste);
         write(fatorial(teste))
