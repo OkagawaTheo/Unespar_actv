@@ -1,3 +1,5 @@
+// tabela simbolo - escopo - sentido 
+
 #include <iostream>
 #include <unordered_map>
 #include <fstream>

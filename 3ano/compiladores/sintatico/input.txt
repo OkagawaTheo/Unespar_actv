@@ -8,6 +8,7 @@ var m, y, teste: integer;
         end;
 begin
         read(teste);
+        testezicadnv;
         write(fatorial(teste))
         teste1234; {comentario zica}; (*outro comentario zica*)
 end.

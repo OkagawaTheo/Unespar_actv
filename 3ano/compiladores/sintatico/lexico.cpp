@@ -10,7 +10,7 @@ enum TokenType {
     PROGRAM, READ, WRITE, INTEGER, BOOLEAN, DOUBLE,
     FUNCTION, PROCEDURE, BEGIN_, END_,
     AND, ARRAY, CASE, CONST, DIV, DO, DOWNTO, ELSE_, FILE_, FOR,
-    GOTO, IF_, IN, LABEL, MOD, NIL, NOT_, OF, OR, PACKED,
+    GOTO, IF_  , IN, LABEL, MOD, NIL, NOT_, OF, OR, PACKED,
     RECORD, REPEAT, SET, THEN, TO, TYPE, UNTIL, WITH, VAR, WHILE_,
     IDENTIFIER, NUMBER, SYMBOL, END_OF_FILE,
     OP_ASSIGN,  // :=
@@ -274,7 +274,6 @@ vector<Token> Lexical(const vector<string>& lines) {
 
 int main() {
     vector<string> lines = readFile("input.txt");
-    
     vector<Token> tokens = Lexical(lines);
 
     ofstream output("output.txt");
