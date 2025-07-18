@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 class DiabetesAnalysis:
   def __init__(self, file_path):
@@ -9,8 +10,8 @@ class DiabetesAnalysis:
 
   def LoadData(self):
     try:
-      self.df = pd.read_csv(self.file_path, names=self.header_columns)
-      print("Carregado.")
+      self.df = pd.read_csv(self.file_path,names=self.header_columns,header=None)
+      print("Carregado com sucesso")
       print(self.df.head())
     except FileNotFoundError:
       print("Arquivo não encontrado.")
@@ -25,11 +26,13 @@ class DiabetesAnalysis:
       return
     
     TroubleCauserVars = ["Glucose", "BloodPressure","SkinThickness","Insulin","BMI"]
-    for col in TroubleCauserVars:
-      CountZeroes = (self.df[col] == 0).sum()
+    for column_name in TroubleCauserVars:
+      zeroesCount = (self.df[column_name]=='0').sum()
+      print(f"-{column_name}: {zeroesCount} zeroes")
 
       
 
 if __name__ == "__main__":
   file_path = '/home/okwath/unespar/Unespar_actv/3ano/IA/archive/diabetes.csv'
   instanceDiabetes = DiabetesAnalysis(file_path=file_path)
+  instanceDiabetes.handleImpossibleVar()
