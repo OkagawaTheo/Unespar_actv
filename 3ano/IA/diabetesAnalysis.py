@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 class DiabetesAnalysis:
   def __init__(self, file_path):
