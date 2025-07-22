@@ -3,14 +3,13 @@ import numpy as np
 
 class DiabetesAnalysis:
   def __init__(self, file_path):
-    self.header_columns = ["Pregnancies", "Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI", "DiabetesPedigreeFunction", "Age", "Outcome"]
     self.file_path = file_path
     self.df = None
     self.LoadData()
 
   def LoadData(self):
     try:
-      self.df = pd.read_csv(self.file_path,names=self.header_columns,header=None)
+      self.df = pd.read_csv(self.file_path)
       print("Carregado com sucesso")
       # print(self.df.head())
     except FileNotFoundError:
@@ -27,13 +26,13 @@ class DiabetesAnalysis:
     
     TroubleCauserVars = ["Glucose", "BloodPressure","SkinThickness","Insulin","BMI"]
     for column_name in TroubleCauserVars:
-      self.df[column_name] = self.df[column_name].replace('0',np.nan)
+      self.df[column_name] = self.df[column_name].replace(0,np.nan)
       self.df[column_name] = pd.to_numeric(self.df[column_name],errors='coerce')
       medianValue = self.df[column_name].median()
-      self.df[column_name] = self.df[column_name].replace('0',np.nan)
+      self.df[column_name] = self.df[column_name].replace(np.nan,medianValue)
       print(f"Mediana de {column_name}: {medianValue:.2f} aplicada na coluna.")
     print("Tratamento de variáveis impossíveis concluido.")
-  
+    print(self.df.head())
     #substituir pelas medianas check
     #replace .nan check
     #.median check
