@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 class DiabetesAnalysis:
   def __init__(self, file_path):
@@ -27,8 +28,16 @@ class DiabetesAnalysis:
     TroubleCauserVars = ["Glucose", "BloodPressure","SkinThickness","Insulin","BMI"]
     for column_name in TroubleCauserVars:
       zeroesCount = (self.df[column_name]=='0').sum()
-      print(f"-{column_name}: {zeroesCount} zeroes")
-
+      self.df[column_name].replace('0',np.nan,inplace=True)
+      self.df[column_name] = pd.to_numeric(self.df[column_name],errors='coerce')
+      medianValue = self.df[column_name].median()
+      self.df[column_name].fillna(medianValue,inplace=True)
+      print(f"Mediana de {column_name}: {medianValue:.2f} aplicada na coluna.")
+    print("Tratamento de variáveis impossíveis concluido.")
+  
+    #substituir pelas medianas check
+    #replace .nan check
+    #.median check
       
 
 if __name__ == "__main__":

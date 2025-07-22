@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build compiler",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "lexico.cpp",
+                "sintatico.cpp",
+                "-o",
+                "meu_compilador",
+                "-Wall",
+                "-g"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compila o analisador léxico, sintático e semântico."
+        }
+    ]
+}
