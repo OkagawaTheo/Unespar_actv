@@ -112,45 +112,10 @@ class DecisionTree:
     best_feature_id = None
     best_threshold = None
 
-    if len(y) == 0 or len(np.unique(y)) == 1: # 0 amostras ou todas pertencem msm classe
+    if len(y) == 0 or len(np.unique(y)) == 1:
       return None, None, 0
-    
     x_np = x.values
-
-    for column_id in range(x.shape[1]):
-      current_column_values = x.np[:,column_id]
-      possible_thresholds = np.unique(current_column_values)
-
-      for threshold in possible_thresholds:
-        left_mask = current_column_values <= threshold
-        right_mask = ~left_mask
-
-        if np.sum(left_mask) == 0 or np.sum(right_mask) == 0:
-          continue
-
-        left_y, right_y = y[left_mask],y[right_mask]
-
-        if self.criterio == "gini":
-          parent_gini = self.calculate_gini(y)
-          n_total = len(y)
-          weighted_child_gini = (len(left_y) / n_total) * self._calculate_gini(left_y) + \
-          (len(right_y) / n_total) * self._calculate_gini(right_y)
-          current_gain = parent_gini - weighted_child_gini #ganho e a reducao de impurezas
-
-        elif self.criterio == "information_gain":
-          current_gain = self.calculate_information_gain(y,left_y,right_y)
-        elif self.criterio == "gain ratio":
-          current_gain = self.calculate_gain_ratio(y,left_y,right_y)
-        else: raise ValueError("Criterio nao suportado.")
-
-        if current_gain > best_gain:
-          best_gain = current_gain
-          best_feature_id = column_id
-          best_threshold = threshold
-
-        return best_feature_id,best_threshold,best_gain
-     
-        
+    
 if __name__ == "__main__":
   file_path = '/home/okwath/unespar/Unespar_actv/3ano/IA/archive/diabetes.csv'
   instanceDiabetes = DiabetesAnalysis(file_path=file_path)
