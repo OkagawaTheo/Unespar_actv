@@ -271,4 +271,4 @@ if __name__ == "__main__":
     print("\nResultados para Gain Ratio - Teste")
     instanceDiabetes.evaluate_model(y_test, y_pred_gr_test, name="Gain Ratio - Teste")
 
-# estava tendo muito problema com overfitting, porem 10 samples e 3 de maxDepth é uma poda agressiva porém trouxe resultado.
+# estava tendo muito problema com overfitting, porem 10 samples e 3 de maxDepth é uma poda agressiva porém trouxe uma redução de ~11% de discrepancia treino-teste
