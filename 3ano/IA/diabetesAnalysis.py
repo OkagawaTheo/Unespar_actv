@@ -126,7 +126,7 @@ class DecisionTree:
         return information_gain / split_info
         
     def find_best_split(self, X, y):
-        best_gain = 0.0 # CORRIGIDO: Inicializado com 0.0
+        best_gain = 0.0 
         best_feature_idx = None
         best_threshold = None
 
