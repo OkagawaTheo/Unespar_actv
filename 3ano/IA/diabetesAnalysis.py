@@ -13,7 +13,7 @@ class DiabetesAnalysis:
     def LoadData(self):
         try:
             self.df = pd.read_csv(self.file_path, names=self.header_columns, header=None, skiprows=1)
-            print("Dataset carregado com sucesso.")
+            print("\nDataset carregado com sucesso.")
         except FileNotFoundError:
             print("Arquivo não encontrado.")
             self.df = None
